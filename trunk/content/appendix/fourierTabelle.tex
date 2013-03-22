@@ -1,0 +1,48 @@
+\begin{landscape}
+\begin{center}
+\renewcommand{\arraystretch}{2.5}
+\begin{tabular}{|rll|rll|}
+\hline
+    $x(t)$ & $\FT$ & $X(\omega)$ &
+    $\e^{-a \cdot t} \cdot \text{u}(t) ~~~~ a > 0$ & $\FT$ & $\frac{1}{j\omega + a}$
+  \\ \hline
+    $\delta(t)$ & $\FT$ & $1$ &
+    $t \cdot \e^{-a \cdot t} \cdot \text{u}(t) ~~~~ a > 0$ & $\FT$ & $\frac{1}{(j\omega + a)^2}$
+  \\ \hline
+    $\delta(t-t_0)$ & $\FT$ & $e^{-j\omega t_0}$
+    & $t^n$ &$\FT$& $2 \pi j^n \delta^{(n)}(\omega) ~~~~ (n=1,2,...)$ 
+  \\ \hline
+    $1$ & $\FT$ & $2 \pi \cdot \delta(\omega)$ &
+    $\e^{-a \cdot |t|} ~~~~ a > 0$ & $\FT$ & $\frac{2a}{\omega^2 + a^2}$
+  \\ \hline
+    $\text{u}(t)=\sigma(t)$ & $\FT$ & $\pi \cdot \delta(\omega) + \frac{1}{j\omega}$ &
+    $\e^{\frac{-t^2}{(2\sigma)^2}}$ & $\FT$ & $\sigma \sqrt{2\pi} \cdot
+    \e^{\frac{-\sigma^2 \cdot \omega^2}{2}}$
+  \\ \hline
+    $\text{sgn}(t)$ & $\FT$ & $\frac{2}{j\omega}$ &
+    $\sinc(a t)=\frac{\sin(a t)}{a t}$ & $\FT$ & $\frac{\pi}{a} \cdot \text{p}_a(\omega)=\begin{cases} 1 \cdot \frac{\pi}{a} &
+    |\omega| < a \\ 0 & |\omega| > a \end{cases} $
+  \\ \hline
+    $\frac{1}{\pi \cdot t}$ & $\FT$ & $-j \cdot \text{sgn}(\omega)$ &
+    $\text{p}_a(t)=\begin{cases} 1 & |t| < a \\ 0 & |t| > a \end{cases} $ & $\FT$ & $2
+    \cdot a \cdot \frac{\sin(\omega \cdot a)}{\omega a} = 2a \sinc{a \omega}$
+  \\ \hline
+    $\e^{j \omega_0 t}$ & $\FT$ & $2 \pi \cdot \delta(\omega - \omega_0)$ 
+     & $x(t) = \begin{cases} 1 - \frac{|t|}{a} & |t| < a \\ 0 & |t| > a \end{cases}$
+     & $\FT$ & $a \cdot \left ( \frac{\sin(\frac{\omega \cdot a}{2})}{\frac{\omega \cdot a}{2}} \right )^2$
+  \\ \hline
+    $\cos(\omega_0 t)$ & $\FT$ & $\pi \cdot \left ( \delta(\omega - \omega_0) + \delta(\omega + \omega_0) \right )$ 
+    &$\delta^{(n)}(t)$ &$\FT$ & $(j\omega)^n$
+  \\ \hline
+    $\sin(\omega_0 t)$ & $\FT$ & $-j\cdot \pi \cdot \left ( \delta(\omega - \omega_0) - \delta(\omega + \omega_0) \right )$ 
+    & $\delta^{(n)}(t-a)$&$\FT$ & $(j\omega)^n \e^{-j\omega a} ~~~~ (n=1,2,...)$
+  \\ \hline
+    $\hat{x}(t) = \frac{1}{\pi}\int\limits_{-\infty}^{\infty} \frac{x(\tau)}{t -
+    \tau} d\tau$ & $\FT$ & $-j\cdot \text{sgn}(\omega) \cdot X(\omega)$ &
+    $\sum \limits_{n=-\infty}^{\infty} \delta(t-n \cdot T) $ & $\FT$ & $\omega_0
+    \sum \limits_{n=-\infty}^{\infty} \delta(\omega - n\cdot \omega_0) $
+  \\ \hline
+\end{tabular}
+\renewcommand{\arraystretch}{1}
+\end{center}
+\end{landscape}

@@ -1,0 +1,31 @@
+\section{Faltung}
+Faltung:
+\begin{equation}
+  \nonumber
+  y(t) = f(t) \ast g(t) = \int\limits_{-\infty}^{\infty}f(u) \cdot g(t-u) du
+\end{equation}
+
+Diskret:
+\begin{equation}
+  \nonumber
+  y(i)=f(i) \ast g(i)=\sum\limits_{k=-\infty}^{\infty}f(k)\cdot g(i-k)
+\end{equation}
+
+\begin{tabular}{p{9cm}p{9cm}}
+  Interpretation: & Geltende Rechengesetze:\\
+  \begin{enumerate}
+    \item $g(t)$ an der Y-Achse Spiegeln
+	  \item Verschiebung um $t$ nach rechts
+	  \item Durch multiplikation der beiden Signale entstehende Fläche berechnen
+  \end{enumerate}
+&
+  \begin{itemize}
+    \item Komutativ (Vertauschen) $g \ast f = f \ast g $
+	  \item Distributiv (Ausklammern, Ausmulziplizieren) $g \ast(f \ast h) = g \ast f \ast h$
+	  \item Assoziativ (Reihenfolge von Klammern) $g \ast(f \ast h) = (g \ast f) \ast h$
+	  \item Faltung mit Dirak $\delta(t-t_0) \ast f(t) = f(t-t_0)$
+  \end{itemize}
+\end{tabular}
+	
+	
+	

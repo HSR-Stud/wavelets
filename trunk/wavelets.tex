@@ -1,0 +1,40 @@
+\newcommand{\titleinfo}{Wavelets}
+\newcommand{\subjectinfo}{From Fourier To Wavelets}
+\newcommand{\authorinfo}{Gian Danuser}
+\newcommand{\versioninfo}{0.1}
+\newcommand{\newpar}{\par\par}
+
+\input{header}
+
+\begin{document}
+		
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+% Kapitel
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+	%Kopf und Fuszeile aktivieren
+	\pagestyle{fancy}
+	
+	%damit " kein umlaut erzeugt und als Anführungszeichn verwendet werden kann
+	\shorthandoff{"} %Abschalten mit \shorthandon{"}
+	
+	%Titel
+	{\LARGE\textbf{\subjectinfo}}
+	
+	Bemerkung zum Dokument:\\
+	$e$ orthonormale Basisvektoren, $b$ Basisvektor, $d$ duale Basis zu $b$\\
+	Vektoren: Kleinbuchstaben fett, Matrize: Grossbuchstaben fett, Konstanten: Kleinbuchstaben\\
+	$(\cdots)^*$ konjugiert Komplex,
+		
+	%Includes	
+	\input{content/grundlagen.tex}
+	\input{content/haar.tex}
+	\input{content/fourier.tex}
+	
+	%Anhang
+	\appendix
+	\input{content/appendix/Faltung.tex}
+	\input{content/appendix/LinAlg.tex}
+	\input{content/appendix/FourierReihe.tex}
+	\input{content/appendix/FourierTransformation.tex}
+	
+\end{document}

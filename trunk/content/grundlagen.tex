@@ -1,0 +1,65 @@
+\section{Grundlagen}
+
+\subsection{Skalarprodukt}
+
+Vektor:
+\[
+	\langle \mathbf{v}|\mathbf{w}\rangle = v_1^* \cdot w_1 + v_2^* \cdot w_2 + ... + v_n^* \cdot w_n  \in \mathbb{R} \qquad \qquad \mathbf{v},\mathbf{ w} \in \mathbb{R} \text{ oder } \in \mathbb{C} 
+\]
+
+Funktion:
+\[  
+	\langle f(t)|g(t) \rangle =  \int f(t)^*\cdot g(t) \,\mathrm{d}t \in \mathbb{R} \qquad \qquad g(t), f(t) \in \mathbb{R} \text{ oder } \in \mathbb{C}
+\]
+Grenzen werden situationsabhängig festgelegt, z.B.: Polynome [-1,1], T periodische Funktionen [0,T] oder [-T/2,T/2], Funktionen in $\mathbb{R}$ von $[-\infty,\infty]$ etc. (Funktion entspricht Vektor mit $\infty$ Elementen)
+
+\subsubsection{Eigenschaften}
+Symmetrie: $\langle v_1|v_2 \rangle = \langle v_2|v_1 \rangle^* \, \in \mathbb{C}  \qquad \langle v_1|v_2 \rangle = \langle v_2|v_1 \rangle \, \in \mathbb{R}$ \\
+Linear: $\langle v_1|v_2 + v_3 \rangle = \langle v_1|v_2 \rangle + \langle v_1|v_3 \rangle =\langle v_1 + v_2|v_3 \rangle = \cdots  \qquad \text{und}\qquad \langle \lambda \cdot v_1|v_2 \rangle = \lambda \langle v_1|v_2 \rangle = \langle v_1|\lambda \cdot v_2 \rangle$\\
+Positiv: $||v||^2 = \langle v|v \rangle \geq 1 \qquad \text{Ausnahme:} \, ||v||^2=0 \, \text{wenn} \, v=0$\\
+Definition der Länge von $v$ (bei Funktionen Norm genannt): $||v|| = \sqrt{\langle v|v \rangle} = \sqrt{||v||^2}$\\
+Definition des Winkels $\gamma$ zwischen $v$ und $w$: $cos(\gamma) = \frac{\langle v|w \rangle}{||v||\cdot ||w||} \qquad$ wenn $v \perp w  \quad \langle v|w \rangle = 0$
+
+
+\subsection{Basis eines Vektorraums}
+Jeder n-dimensionale Vektorraum $V$ wird von n Basisvektoren $B=\{ b_1,...,b_n \}$ aufgespannt. Jeder Vektor, der sich in diesem Vektorraum befindet, kann als Linearkombination der Basisvektoren dargestellt werden.  Alle Basisvektoren sind linear unabhängig voneinander (ein Basisvektor kann nicht durch Linearkombination der anderen Basisvektoren dargestellt werden)!
+
+\[  
+	v = \sum_{i=1}^{n}c_i \cdot b_i \qquad \qquad  b_k \neq \sum_{i=1 \, (i\neq k)}^{n}c_i \cdot b_i \qquad \qquad v \in V \quad c_i \in \mathbb{R}\text{ oder } \in \mathbb{C} \text{ bei complexem $V$}
+\]
+
+Jede Basis $b_i$ besitzt eine duale Basis $d_i$, wobei gilt: $\qquad \langle d_i|b_j\rangle = \delta_{ij} = \begin{cases} 1 \quad i=j\\ 0 \quad sonst  \end{cases}$
+
+Wenn die Basisvektoren orthogonal sind, ist die duale Basis gleich der normalen Basis $b_i = d_i$.
+
+Eine Basis ist orthonormal wenn die Basisvektoren $e_i$ orthogonal zueinander sind und jeweils die Länge 1 haben. Die duale Basis kann wie folgt berechnet werden. (Ohne Transponieren sind die Zeilenvektoren die dualen Basisvektoren!)
+
+\[  
+	B = \left[ b_1 \, b_2 \, \cdots \, b_n \right] \Rightarrow D=(B^{-1})^T = \left[ d_1 \, d_2 \, \cdots \, d_n \right]
+\]
+
+\[
+	v=\sum_{i=1}^{n} \underbrace{\langle d_i|v \rangle}_{c_i} \cdot b_i = \sum_{i=1}^{n} \langle b_i|v \rangle \cdot d_i = B \cdot \underbrace{(D \cdot v)}_{c}
+	\qquad \qquad 
+	\left( \text{ orthonormiert: } v=\sum_{i=1}^{n} \underbrace{\langle e_i|v \rangle}_{c_i} \cdot e_i \right) 
+\]
+
+
+\subsection{Allgemeiner Satz des Pythagoras}
+
+\[  
+	||f-f_n||^2 =  ||f||^2 - \sum_{k=0}^{n} |c_k|^2 \qquad \qquad \left( n\rightarrow \infty: \quad ||f||^2=\sum_{k=0}^{n} |c_k|^2 \right)
+\]
+
+
+\subsection{Funktionsraum}
+$L^2(\mathbb{R}) \qquad$ Menge der quadratintegrierbaren Funktionen $\int_{-\infty}^{\infty}|f(t)|^2 \mathrm{d}t < \infty$ oder $L^2(T) \quad \int_{0}^{T}|f(t)|^2 \mathrm{d}t < \infty$
+
+($L^2(\mathbb{R})$ und $L^2(T)$ sind Hilberträume, da sie ein Skalarprodukt mit gewissen Axiomen erfüllt.)
+
+$L^2$-Norm $||f-f_n|| \qquad$ Mass für die Güte der Approximation $f_n$ von der Funktion $f$
+
+$L(\mathbb{R}) \qquad \int_{-\infty}^{\infty}|f(t)| \mathrm{d}t < \infty$ oder $L(T) \qquad \int_{0}^{T}|f(t)|^2 \mathrm{d}t < \infty$
+
+\subsection{Punktweise Konvergenz}
+$f(t) = f(t+T)$, $f(t) \in L^2([0,T])$ und $f'(t)$ existiert und ist kontinuierlich für alle $t \in \mathbb{R}$, dann konvergieren die Summen auch punktweise.

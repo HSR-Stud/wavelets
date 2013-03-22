@@ -1,0 +1,206 @@
+\section{Lineare Algebra}
+
+\subsection{Vektoren}
+
+\subsubsection{Betrag von Vektoren}
+\[ 
+	|\vec{a}| = \sqrt{\vec{a} \cdot \vec{a}} = ||\vec{a}|| =\sqrt{a_1^2 + a_2^2 + \ldots + a_n^2}
+\]
+
+	
+\subsubsection{Skalarprodukt}
+\[ 
+	\vec{a} \cdot \vec{b} = a_1 \cdot b_1 + a_2 \cdot b_2 + \ldots +a_n \cdot b_n = |\vec{a}| \cdot |\vec{b}| \cdot \cos(\varphi)
+\]
+			
+Projektion $\vec{p}$ vom Vektor $\vec{a}$ auf den Einheitsvektor $\vec{e}$ (wobei $|\vec{e}|=1$): \hspace{1cm} $\vec{p}=(\vec{a} \cdot \vec{e}) \cdot \vec{e}$
+
+
+\subsubsection{Vektorprodukt}
+\[
+	\vec{a} \times \vec{b} = 
+	\begin{pmatrix}a_1\\a_2\\a_3 \end{pmatrix} \times 
+	\begin{pmatrix}b_1\\b_2\\b_3 \end{pmatrix} = 
+	\begin{pmatrix}
+	a_2 b_3 - a_3 b_2 \\ a_3 b_1 -  a_1 b_3 \\ a_1 b_2 - a_2 b_1 
+	\end{pmatrix} \quad \quad 
+	|\vec{a} \times \vec{b}|=|\vec{a}| \cdot |\vec{b}| \cdot
+	\sin(\varphi)
+\]
+
+Der Betrag von $|\vec{a} \times \vec{b}|$ entspricht der Fläche des
+Parallelogramms das von $\vec{a}$ und $\vec{b}$ aufgespannt wird. Der Vektor  $\vec{a} \times \vec{b}$ steht senkrecht auf den Vektoren $\vec{a}$ und $\vec{b}$!
+
+	
+\subsection{Matrizen}
+
+\subsubsection{Matrizenprodukt}
+Matrizenprodukt (Skalarprodukt) einer Matrix A und einer Matrix B ergiebt eine
+Matrix C, deren Elemente die Skalarprodukte der Zeilenvektoren von A mit den
+Spaltenvektoren von B sind.
+
+\[
+	\begin{pmatrix}
+	a_{11} & \ldots & a_{1n} \\
+	\vdots & A & \vdots \\
+	a_{n1} & \ldots & a_{nn}
+	\end{pmatrix} \cdot \begin{pmatrix} 
+	b_{11} & \ldots & b_{1n} \\
+	\vdots & B & \vdots \\
+	b_{n1} & \ldots & b_{nn}
+	\end{pmatrix} = \begin{pmatrix}
+	\sum\limits_{i=1}^n a_{1i}b_{i1} & \ldots & \sum\limits_{i=1}^n a_{1i}b_{in}
+	\\ \vdots & C & \vdots \\
+	\sum\limits_{i=1}^n a_{ni}b_{i1} & \ldots & \sum\limits_{i=1}^n a_{ni}b_{in}
+	\end{pmatrix}
+\]
+
+
+\subsubsection{Rang}
+Der Rang einer Matrix gibt an, wie viele Zeilen linear unabhängig sind.
+
+
+\subsubsection{Spur}
+Die Spur einer Matrix $A$ wird durch die Summe der Diagonalelemente berechnet.
+
+\[
+	\mathrm{Spur}(A)=\mathrm{tr}(A)=\sum\limits_{i=1}^n a_{ii}
+\]
+
+Rechenregeln:\\
+- $\mathrm{Spur}(A)=\mathrm{Spur}(A^t)$\\
+- $\mathrm{Spur}(AB)=\mathrm{Spur}(BA)$\\
+- $\mathrm{Spur}(ABC)=\mathrm{Spur}(CBA)=\mathrm{Spur}(BCA)$\\
+
+Anwendung: $\mathrm{Spur}(A)=1+2 \cos(\alpha)$
+
+\subsubsection{Transponierte Matrix}
+Transponierte Matrix $A^t$ heisst alle Spalten und Zeilen
+der Matrix $A$ vertauschen.
+
+\[
+	A=  
+	\begin{pmatrix} 
+		a_{11} & a_{12} & \cdots & a_{1n} \\
+		a_{21} & a_{22} & \cdots & a_{2n} \\
+		\vdots & \vdots & \ddots & \vdots \\
+		a_{m1} & a_{m2} & \cdots & a_{mn} \\
+	\end{pmatrix}
+	\qquad \qquad 
+	A^{\mathrm{T}} = 
+	\begin{pmatrix} 
+		a_{11} & a_{21} & \cdots & a_{m1} \\
+		a_{12} & a_{22} & \cdots & a_{2n} \\
+		\vdots & \vdots & \ddots & \vdots \\
+		a_{1n} & a_{2n} & \cdots & a_{mn} \\
+	\end{pmatrix}
+\]
+
+Rechenregeln:\\
+- $(A+B)^t=A^t+B^t$\\
+- $(A \cdot B)^t=A^t \cdot B^t$
+
+
+\subsubsection{Orthogonale Matrix}
+Eigenschaften:\\
+- Quadratisch\\
+- Zeilenvektoren sind orthonormal, Spaltenvektoren sind orthonormal\\
+- Multiplikation von 2 orthogonalen Matrizen gibt eine orthogonale
+Matrix\\
+- $A^t=A^{-1}$ und $A^t \cdot A = I$(Einheitsmatrix)\\
+- Determinante hat immer Betrag $1$\\
+- $\det(O)=+1$: die orthogonale Matrix $O$ enthält alle Drehungen\\
+- $\det(O)=-1$: die orthogonale Matrix $O$ enthält alle Drehspiegelungen 
+
+
+\subsubsection{Determinante (Quadratische Matrizen)}
+\textbf{Berechnung:} \\
+Die Determinante ist das Produkt der Pivoelemente $p$ (mit
+Gauss ermittelbar).  $\det \begin{pmatrix}p_1 & \ldots & \ast \\
+\vdots & p_i & \vdots \\ \ast & \ldots & p_n \end{pmatrix} =
+\sum\limits_{i=1}^{n}p_i$\\
+
+2D Matrix (Fisch): \hspace{1cm} $\det \begin{pmatrix}a & b \\ c
+& d \end{pmatrix} = a d - b c$\\
+
+\textbf{Rechenregeln:}\\
+- $\det(A \cdot B) = \det(A) \cdot \det(B)$\\
+- $\det(A^{-1})=\det(A)^{-1}=\frac{1}{\det(A)}$\\
+- $\det(A^t)=\det(A)$ wenn $A$ Quadratische \\
+
+\textbf{Merksätze:}\\
+- Matrix $A$ linear abhängig $\Rightarrow \det(A)=0$\\
+- Vertauschen von 2 Zeilen $\Rightarrow (-1)\cdot \det(A)$\\
+- Determinante einer 2D Matrix entspricht der Fläche des aufgespannten
+Parallelogramm\\
+- Determinante einer 3D Matrix entspricht dem Volumen des aufgespannten
+Parallelepipeds\\
+- Determinante einer orthagonalen Matrix hat immer Betrag $1$
+
+\subsubsection{Cramersche Regel}
+Ausgangslage: $\qquad A \cdot x = b \qquad \det(A)\neq 0$\\
+Lösung $x_i$:
+\[
+	x_i=\frac{\det(A_i)}{\det(A)} \qquad \qquad A_i:\text{ $i$-te Spalte von $A$  durch rechte Seite  $b$ ersetzen!}
+\]
+
+
+\subsection{Eigenvetoren und Eigenwerte}
+Ein Eigenvektor $v$ einer Abbildung $A$ (Matrix) ist ein vom Nullvektor
+verschiedener Vektor, dessen Richtung durch die Abbildung nicht verändert wird. Der Vektor wird nur
+gestreckt oder gestaucht. Dieser Faktor wird Eigenwert $\lambda$ genannt.
+\[
+	A v = \lambda v \quad \Leftrightarrow \quad (A-\lambda I)v=0
+\]
+
+\textbf{Charakteristisches Polynom:}\\
+\[
+	\chi_A(\lambda)=\det(A-\lambda I)
+\]
+
+\textbf{Eigenwerte:}\\
+Die Nullstelle (da $A-\lambda I$ Singulär) des charakteristischen Polynom sind
+die Eigenwerte. 
+\[
+	\chi_A(\lambda)=\det(A-\lambda I)=0
+\]
+
+\textbf{Eigenvektoren:}\\
+Um die Eigenvektoren zu erhalten muss das folgende Gleichungssystem für jeden
+Eigenwert gelöst werden.
+\[ 
+	(A-\lambda I)v=0 \qquad \qquad (v \text{ auf länge 1 normieren})
+\]
+
+\subsection{Spezielle Matrizen}
+Einheitsmatrix: 
+$I= \begin{pmatrix} 
+1 & 0 & 0 \\
+0 & 1 & 0 \\
+0 & 0 & 1
+\end{pmatrix}$
+
+\vspace{0.5cm}
+
+Drehmatrizen:
+$\quad$
+X-Achse
+$\begin{pmatrix} 
+	1 & 0 & 0 \\
+	0 & \cos(\alpha) & -\sin(\alpha) \\
+	0 & \sin(\alpha) & \cos(\alpha)
+\end{pmatrix}$
+$\quad$
+Y-Achse
+$\begin{pmatrix} 
+	\cos(\alpha) & 0 & \sin(\alpha) \\
+	0 & 1 & 0 \\
+	-\sin(\alpha) & 0 & \cos(\alpha)
+\end{pmatrix}$
+$\quad$
+Z-Achse
+$\begin{pmatrix} 
+	\cos(\alpha) & -\sin(\alpha) & 0 \\
+	\sin(\alpha) & \cos(\alpha) & 0 \\
+	0 & 0 & 1
+\end{pmatrix}$
