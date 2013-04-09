@@ -1,0 +1,78 @@
+\section{Multiresolution Analysis (MRA)}
+
+Skalierungsfunktion (Mother scaling function $\varphi(t)$): 
+\[
+	\varphi_{m,n}(t)=2^{-m/2} \cdot \varphi(2^{-m}\cdot t - n) = \frac{1}{\sqrt{2^{m}}} \cdot \varphi(2^{-m}\cdot t -n) = 2^{-m/2} \cdot \varphi(2^{-m}\cdot (t - 2^{m}\cdot n))
+\]
+
+Forderung an die Skalierungsfunktion:\\
+(Aussage von 2-scaling: Eine Funktion wird um den Faktor 2 (in der Zeit) gestaucht. Durch verschieben, strecken bzw. stauchen (der Amplitude) und aufaddieren dieser skalierten Funktion, kann die  Ausgangsfunktion wieder dargestellt werden.)
+\[
+	\langle \varphi_{0,n}|\varphi_{0,n'} \rangle = \delta_{n,n'} =  \begin{cases} 1 \quad n=n'\\ 0 \quad sonst  \end{cases}  \qquad \text{orthonormality} 
+\]
+\[
+	\varphi(t) = \sqrt{2} \sum_{k \in \mathbb{Z}} h_k \cdot \varphi(2t-k) = \sum_{k \in \mathbb{Z}} h_k \cdot \varphi_{-1,k}(t) \qquad \varphi_{m,n}=\sum_{k \in \mathbb{Z}} h_k \cdot \varphi_{m-1,2n+k} \qquad \text{2-scaling}  
+\]
+\[
+	\varphi \text{ muss integrierbar sein und } \int_{-\infty}^{\infty}\varphi(t) \mathrm{d}t = 1  \qquad \text{mean one}  
+\] 
+
+
+Scale space (je weiter nach rechts (je kleiner m), desto grösser der Raum): 
+\[
+	...\subset V_{m+1} \subset V_{m} \subset V_{m-1} \subset ...
+	\qquad \qquad
+	V_m = \langle \varphi_{m,n}|n \in \mathbb{Z}  \rangle = \{ ...,\varphi_{m,-1},\varphi_{m,0}, \varphi_{m,1}, \varphi_{m,2},... \}
+\]
+
+Detail space (Detailinformation):
+\[
+	W_m = \langle \psi_{m,n} | n \in \mathbb{Z} \rangle
+	\qquad \qquad
+	V_{m-1} = V_m \oplus W_m
+\]
+
+Wavelet:
+\[
+	\psi_{m,n} = \sum_{k \in \mathbb{Z}} g_k \varphi_{m-1,2n+k} 
+\]
+
+Definition vom scale coefficient $u_{m,n}$ und dem detail coefficient $v_{m,n}$:
+\[
+	u_{m,n} = \langle \varphi_{m,n}|f \rangle
+	\qquad \qquad
+	v_{m,n} = \langle \psi_{m,n}|f \rangle
+\]
+
+Fast Wavelet Transform (Decomposition / Reconstruction):
+\[
+	\boxed{\begin{array}{ccccc}
+		u_m & \xrightarrow{H'} & u_{m+1} & \xrightarrow{H'} & u_{m+2} \\
+		& \searrow^{G'} & & \searrow^{G'} & \\
+		& & v_{m+1} & & v_{m+2} \\
+	\end{array}}
+	\qquad \qquad \qquad \qquad
+	\boxed{\begin{array}{ccccc}
+		u_{m+2} & \xrightarrow{H} & u_{m+1} & \xrightarrow{H} & u_{m} \\
+		& \nearrow_G & & \nearrow_G & \\
+		v_{m+2}& & v_{m+1} & & \\
+	\end{array}}
+\]
+
+\[  
+	u_{m+1,n} = \sum_{k \in  \mathbb{Z}} h_{k-2n} u_{m,k} \quad v_{m+1,n} = \sum_{k \in  \mathbb{Z}} g_{k-2n} u_{m,k}
+	\qquad \qquad
+	u_{m,n} = \sum_{k \in  \mathbb{Z}} h_{n-2k} u_{m+1,k} + g_{n-2k} v_{m+1,k}
+\]
+
+\[
+	H'(x)_n = \sum_{k \in  \mathbb{Z}} h_{k-2n} x_k
+	\qquad \qquad \qquad \qquad
+	H(x)_n = \sum_{k \in  \mathbb{Z}} h_{n-2k} x_k
+\]
+
+\[
+	G'(x)_n = \sum_{k \in  \mathbb{Z}} g_{k-2n} x_k
+	\qquad \qquad \qquad \qquad
+	G(x)_n = \sum_{k \in  \mathbb{Z}} g_{n-2k} x_k
+\]
