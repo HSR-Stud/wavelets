@@ -1,0 +1,15 @@
+\section{Designing Wavelet Filters}
+
+\subsection{Vanishing Moments}
+ Wenn die Fouriertransformation $\hat{\psi}(\xi)$ eine Nullstelle der Ordnung $p$ an der Stelle $\xi = 0$ hat, dann sind die Ableitungen $\hat{\psi}^{(k)}(0)$ für $k=0,1,...,p-1$ gleich Null. Setzt man die Formel für die Fouriertransformation ein sieht man, dass das k-th Moment verschwindet!
+
+\[ 
+	\mu_k = \int_{-\infty}^{\infty} \psi(t) = t^k \, \mathrm{d}t
+\]
+
+Ein Wavelet sollte möglichst viel verschwindende Momente (vanishing moments) aufweisen, denn dann sind die Koeffizienten $\nu_{m,n} = 0$.
+
+%TODO infos aus Anwenndungsteil hinzufügen + Weitere wichtige eigenschaften wie z.B. kurze Filter etc.
+
+
+\section{Scaling Function From Filter Coefficients}
