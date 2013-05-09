@@ -1,55 +1,56 @@
 \section{Multiresolution Analysis (MRA)}
 
-%\subsection{Orthogonal MRA}
-
-%\subsection{Biorthogonal MRA}
-
-%\subsection{Filterbank Beschreibung}
-
-%\subsection{Zusammenfassung}
-
+\subsection{Orthogonal MRA}
 Skalierungsfunktion (Mother scaling function $\varphi(t)$): 
 \[
 	\varphi_{m,n}(t)=2^{-m/2} \cdot \varphi(2^{-m}\cdot t - n) = \frac{1}{\sqrt{2^{m}}} \cdot \varphi(2^{-m}\cdot t -n) = 2^{-m/2} \cdot \varphi(2^{-m}\cdot (t - 2^{m}\cdot n))
 \]
 
-Forderung an die Skalierungsfunktion:\\
+Axioms (Anforderungen) die eine Skalierungsfunktion erfüllen muss:
+\begin{enumerate}
+	\item orthonormality: $ \langle \varphi_{0,n}|\varphi_{0,n'} \rangle = \delta_{n,n'} =  \begin{cases} 1 \quad n=n'\\ 0 \quad sonst  \end{cases}  $
+	\item 2-scaling: $ \varphi(t) = \sqrt{2} \sum_{k \in \mathbb{Z}} h_k \cdot \varphi(2t-k) = \sum_{k \in \mathbb{Z}} h_k \cdot \varphi_{-1,k}(t) \qquad \varphi_{m,n}=\sum_{k \in \mathbb{Z}} h_k \cdot \varphi_{m-1,2n+k} $
+	\item mean one: $ \varphi \text{ muss integrierbar sein und } \int_{-\infty}^{\infty}\varphi(t) \mathrm{d}t = 1 $
+\end{enumerate}
+
 (Aussage von 2-scaling: Eine Funktion wird um den Faktor 2 (in der Zeit) gestaucht. Durch verschieben, strecken bzw. stauchen (der Amplitude) und aufaddieren dieser skalierten Funktion, kann die  Ausgangsfunktion wieder dargestellt werden.)
-\[
-	\langle \varphi_{0,n}|\varphi_{0,n'} \rangle = \delta_{n,n'} =  \begin{cases} 1 \quad n=n'\\ 0 \quad sonst  \end{cases}  \qquad \text{orthonormality} 
+
+Daraus ergeben sich folgende einfachen Konsequenzen:
+\[ 
+	\sum_{k \in \mathbb{Z}} h_k = \sqrt{2} \qquad \qquad (\text{z.B.: } h_0 + h_1 + h_3 + h_4 + h_5 = \sqrt{2})
 \]
 \[
-	\varphi(t) = \sqrt{2} \sum_{k \in \mathbb{Z}} h_k \cdot \varphi(2t-k) = \sum_{k \in \mathbb{Z}} h_k \cdot \varphi_{-1,k}(t) \qquad \varphi_{m,n}=\sum_{k \in \mathbb{Z}} h_k \cdot \varphi_{m-1,2n+k} \qquad \text{2-scaling}  
+	\delta_{0,n} = \sum_{k \in \mathbb{Z}} h_k h_{k-2n} \qquad \qquad (\text{z.B.: } h_0h_2 + h_1h_3 + h_2h_4 + h3_h5 = h_0h_4+h_1h_5 = 0 )
 \]
-\[
-	\varphi \text{ muss integrierbar sein und } \int_{-\infty}^{\infty}\varphi(t) \mathrm{d}t = 1  \qquad \text{mean one}  
-\] 
 
-
-Scale space (je weiter nach rechts (je kleiner m), desto grösser der Raum): 
+Scale space: 
 \[
-	...\subset V_{m+1} \subset V_{m} \subset V_{m-1} \subset ...
-	\qquad \qquad
 	V_m = \langle \varphi_{m,n}|n \in \mathbb{Z}  \rangle = \{ ...,\varphi_{m,-1},\varphi_{m,0}, \varphi_{m,1}, \varphi_{m,2},... \}
+	\qquad \qquad
+	V_mf = \sum_{n \in \mathbb{Z}} u_{m,n}\varphi_{m,n} \quad \text{mit } u_{m,n}=\langle \varphi_{m,n}|f \rangle
+\]
+
+Lokalisation:
+\[  
+	m \rightarrow -\infty \quad ||f-V_mf||^2 \rightarrow 0 \quad (\text{finer (feiner)})
+	\qquad \qquad
+	m \rightarrow +\infty \quad ||V_mf||^2 \rightarrow 0 \quad (\text{coarser (gröber)})
 \]
 
 Detail space (Detailinformation):
 \[
-	W_m = \langle \psi_{m,n} | n \in \mathbb{Z} \rangle
+	W_m = \langle \psi_{m,n} | n \in \mathbb{Z} \rangle = \{ ...,\psi_{m,-1},\psi_{m,0}, \psi_{m,1}, \psi_{m,2},... \}
 	\qquad \qquad
-	V_{m-1} = V_m \oplus W_m
+	W_mf = \sum_{n \in \mathbb{Z}} \nu_{m,n}\psi_{m,n} \quad \text{mit } \nu_{m,n}=\langle \psi_{m,n}|f \rangle
 \]
+Räume (je weiter nach rechts (je kleiner m), desto grösser der Raum):
+\[ V_{m-1} = V_m \oplus W_m  \qquad \qquad ...\subset V_{m+1} \subset V_{m} \subset V_{m-1} \subset ... \]
 
 Wavelet:
 \[
 	\psi_{m,n} = \sum_{k \in \mathbb{Z}} g_k \varphi_{m-1,2n+k} 
-\]
-
-Definition vom scale coefficient $u_{m,n}$ und dem detail coefficient $v_{m,n}$:
-\[
-	u_{m,n} = \langle \varphi_{m,n}|f \rangle
-	\qquad \qquad
-	v_{m,n} = \langle \psi_{m,n}|f \rangle
+	\qquad \qquad 
+	\left(\psi_{0,0}=\sum_{k \in \mathbb{Z}} (-1)^k h_{l-k} \sqrt{2}  \varphi_{0,0}(2t-k) = \sum_{k \in \mathbb{Z}} g_k \varphi_{-1,k} \quad l \in \mathbb{Z}_{ungerade} \right)
 \]
 
 Fast Wavelet Transform (Decomposition / Reconstruction):
@@ -57,20 +58,20 @@ Fast Wavelet Transform (Decomposition / Reconstruction):
 	\boxed{\begin{array}{ccccc}
 		u_m & \xrightarrow{H'} & u_{m+1} & \xrightarrow{H'} & u_{m+2} \\
 		& \searrow^{G'} & & \searrow^{G'} & \\
-		& & v_{m+1} & & v_{m+2} \\
+		& & \nu_{m+1} & & \nu_{m+2} \\
 	\end{array}}
 	\qquad \qquad \qquad \qquad
 	\boxed{\begin{array}{ccccc}
 		u_{m+2} & \xrightarrow{H} & u_{m+1} & \xrightarrow{H} & u_{m} \\
 		& \nearrow_G & & \nearrow_G & \\
-		v_{m+2}& & v_{m+1} & & \\
+		\nu_{m+2}& & \nu_{m+1} & & \\
 	\end{array}}
 \]
 
 \[  
-	u_{m+1,n} = \sum_{k \in  \mathbb{Z}} h_{k-2n} u_{m,k} \quad v_{m+1,n} = \sum_{k \in  \mathbb{Z}} g_{k-2n} u_{m,k}
+	u_{m+1,n} = \sum_{k \in  \mathbb{Z}} h_{k-2n} u_{m,k} \quad \nu_{m+1,n} = \sum_{k \in  \mathbb{Z}} g_{k-2n} u_{m,k}
 	\qquad \qquad
-	u_{m,n} = \sum_{k \in  \mathbb{Z}} h_{n-2k} u_{m+1,k} + g_{n-2k} v_{m+1,k}
+	u_{m,n} = \sum_{k \in  \mathbb{Z}} h_{n-2k} u_{m+1,k} + g_{n-2k} \nu_{m+1,k}
 \]
 
 \[
@@ -84,3 +85,61 @@ Fast Wavelet Transform (Decomposition / Reconstruction):
 	\qquad \qquad \qquad \qquad
 	G(x)_n = \sum_{k \in  \mathbb{Z}} g_{n-2k} x_k
 \]
+
+
+\subsection{Biorthogonal MRA}
+
+Axioms (Anforderungen) die eine Skalierungsfunktion erfüllen muss:
+\begin{enumerate}
+	\item biorthogonality: $ \langle \varphi_{m,n}|\tilde{\varphi}_{p,q} \rangle = \delta_{m,p}\cdot \delta_{n,p} \qquad \qquad \left( \langle \varphi_{0,n}|\tilde{\varphi}_{0,0} \rangle = \delta_{0,n} \right)$
+	\item 2-scaling: $ \varphi_{0,0}(t) = \sum_{k \in \mathbb{Z}} h_k \cdot \varphi_{-1,k}(t) \qquad \qquad  \tilde{\varphi}_{0,0}(t) = \sum_{k \in \mathbb{Z}} h_k \cdot \tilde{\varphi}_{-1,k}(t) $
+	\item mean one: $ \int_{-\infty}^{\infty}\varphi(t) \mathrm{d}t = 1 \qquad \qquad \int_{-\infty}^{\infty}\tilde{\varphi}(t) \mathrm{d}t = 1$
+\end{enumerate}
+
+Einfache Konsequenzen sind:
+\[ 
+	\sum_{k \in  \mathbb{Z}} h_k = \sum_{k \in  \mathbb{Z}} \tilde{h}_k = \sqrt{2} 
+	\qquad \qquad
+	\sum_{k \in  \mathbb{Z}} h_k \tilde{h}_k = \delta_{0,n}
+\]
+
+$  
+	\text{Analyse-Funktion: } \varphi_{m,n} \quad \psi_{m,n}
+	\qquad \qquad
+	\text{Synthese-Funktion: } \tilde{\varphi}_{m,n} \quad \tilde{\psi}_{m,n}
+$
+
+
+\subsection{Filterbank Beschreibung}
+Up-/ Downsampling: $ S(z) (\downarrow 2)(\uparrow 2) = \frac{1}{2} (S(z)+S(-z) $
+
+\vspace{-2cm}
+
+\begin{flushright}
+	\includegraphics[width=0.5\textwidth]{content/FilterBank.pdf} 
+\end{flushright}
+ 
+\vspace{-0.5cm}
+
+Filterbank (durch $-(-1)^k$ werden alle geraden Koeffizienten gelöscht ($=0$) ):
+\[  
+	\underbrace{\tilde{A}(z) A(z)}_{M(z)} + \underbrace{\tilde{D}(z)D(z)}_{-(-1)^k M(-z)} = M(z)-(-1)^kM(-z) = 2
+	\qquad \qquad
+	\tilde{A}(z)A(-z) + \tilde{D}(z)D(-z) = 0
+\]
+
+\subsubsection{Orthogonale Filterkoeffizienten}
+Zusammenhang der Filter (shift: $(-z)^k$, alternierendes Vorzeichen$(\pm)$ durch einsetzen von $-z$):
+\[  
+	\tilde{A}(z) = A(z)
+	\qquad \qquad
+	\tilde{D} = D(z) = (-z)^k\tilde{A}(-z)
+\]
+
+\subsubsection{Biorthogonal Filterkoeffizienten}
+
+Zusammenhang der Filter (shift: $(-z)^k$ bzw. $-z^{-k}$, alternierendes Vorzeichen$(\pm)$ durch einsetzen von $-z$):
+\[ 
+	D(z) = (-z)^k\tilde{A}(-z) \qquad \qquad \tilde{D}(z) = -z^{-k}A(-z)
+\]
+
