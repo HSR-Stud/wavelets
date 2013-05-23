@@ -33,15 +33,62 @@ Waveletkompression:
 \end{itemize}
 Ein gutes Wavelet ist das bior4.4. Es ist biorthogonal, symmetrisch, hat 4 vanishing Moments, das Synthese Wavelet hat eine Regularität die grosser als 1.3 ist. Die resultierenden Filter weisen 7 bzw. 9 Filterkoeffizienten auf.
 
+
 \subsubsection{Zwei-Dimensionale Wavelettransformation}
 
-\includegraphics[width=\textwidth]{content/ZweiDimWaveletTransf.pdf}
+Die Operatoren $A_k$ berechnet den Approximationskoeffizient der Stufe $k$. Die Detailkoeffizienten der Stufe $k$ werden durch den Operator $D_k^j$ berechnet. Bei den Detailkoeffizienten wird unter horizontal $j=h$, vertikal $j=v$ und diagonalen $j=d$ Details unterschieden. (Horizontal=parallel zur x-Achse)
 
-%TODO MRA Formeln
+\begin{minipage}[c]{0.6\textwidth}
+	\[  
+		A_0f = A_mf+\sum_{1}^{k=m}(D_k^hf+D_k^vf+D_k^df)
+	\]
+	\[  
+		A_kf(x,y)=\sum_{q\in\mathbb{Z}}\sum_{p\in \mathbb{Z}}u_{k;p,q}\Phi_{k;p,q}(x,y) = \sum_{q\in\mathbb{Z}}\sum_{p\in \mathbb{Z}}u_{k;p,q} \varphi_{k,q}(x) \varphi_{k,p}(y)
+	\]
+	\[  
+		D_k^hf(x,y)=\sum_{q\in\mathbb{Z}}\sum_{p\in \mathbb{Z}}v_{k;p,q}^h\Psi_{k;p,q}^h(x,y) = \sum_{q\in\mathbb{Z}}\sum_{p\in \mathbb{Z}}v_{k;p,q}^h \varphi_{k,q}(x) \psi_{k,p}(y)
+	\]
+	\[  
+		D_k^vf(x,y)=\sum_{q\in\mathbb{Z}}\sum_{p\in \mathbb{Z}}v_{k;p,q}^v\Psi_{k;p,q}^v(x,y) = \sum_{q\in\mathbb{Z}}\sum_{p\in \mathbb{Z}}v_{k;p,q}^v \psi_{k,q}(x) \varphi_{k,p}(y)
+	\]
+	\[  
+		D_d^vf(x,y)=\sum_{q\in\mathbb{Z}}\sum_{p\in \mathbb{Z}}v_{k;p,q}^d\Psi_{k;p,q}^d(x,y) = \sum_{q\in\mathbb{Z}}\sum_{p\in \mathbb{Z}}v_{k;p,q}^d \psi_{k,q}(x) \psi_{k,p}(y)
+	\]		
+\end{minipage}
+\begin{minipage}[c]{0.4\textwidth}
+	\includegraphics[width=0.8\textwidth]{content/ZweiDimWaveletTransf.pdf}	
+	\[ u_{k;q,p}=\langle f|\Phi_{k;q,p} \rangle = \iint_{\mathbb{R}^2} f \cdot \Phi_{k;q,p} \, \mathrm{d}x\mathrm{d}y \]
+	\[ = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(x,y) \varphi_{k,q} \varphi_{k,p}(y) \, \mathrm{d}x\mathrm{d}y \]
+\end{minipage}
+\[
+	v_{k;q,p}^h=\langle f|\Psi_{k;q,p}^h \rangle = \iint_{\mathbb{R}^2} f \cdot \Psi_{k;q,p}^h \, \mathrm{d}x\mathrm{d}y = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(x,y) \varphi_{k,q} \psi_{k,p}(y) \, \mathrm{d}x\mathrm{d}y \qquad \text{etc.}
+\]
 
+Die Filterkoeffizienten werden aber mit der Oben abgebildeten Filterbank berechnet.
 
 
 \subsection{Denoising}
+
+\subsubsection{Notation}
+
+\begin{tabular}{ll}
+	$f$ & gemessenes Signal (Sequenz von Samples $f_1, f_2,...$), $f=f^\# + f^R$ \\
+	$f^\#$ & richtiges Signal (unbekannt) \\
+	$f^R$ & Rauschen (unbekannt, stochastisch) \\
+	$\tilde{f}$ & Schätzung des richtigen Signals \\
+	$\mathrm{MSE}(\tilde{f}) := \frac{1}{N}\sum_{k=0}^{N-1}|\tilde{f}_k - f_k^{\#}|^2$ & Mean Squard Error \\
+\end{tabular}
+
+Signal to Noise Ratio (SNR):
+\[
+	\mathrm{SNR}(\tilde{f}):=10\cdot \log_{10} \left(\frac{1}{N}\sum_{k=0}^{N-1} |f_k^{\#}|^2 / \mathrm{MSE}\right) = \left(\sum_{k=0}^{N-1} |f_k^{\#}|^2 / \sum_{k=0}^{N-1}|\tilde{f}_k - f_k^{\#}|^2\right)
+\]
+
+\subsubsection{Vorgehen für Denoising}
+\[ 
+	f \longrightarrow \boxed{\mathrm{Transformation}} \longrightarrow (v_{m,n}) \longrightarrow \boxed{\mathrm{Thresholding}} \longrightarrow (\tilde{v}_{m,n}) \longrightarrow \boxed{\mathrm{Reconstruction}}\longrightarrow \tilde{f} 
+\]
+
 
 \subsection{Feature Detection and Extraction}
 
