@@ -89,6 +89,53 @@ Signal to Noise Ratio (SNR):
 	f \longrightarrow \boxed{\mathrm{Transformation}} \longrightarrow (v_{m,n}) \longrightarrow \boxed{\mathrm{Thresholding}} \longrightarrow (\tilde{v}_{m,n}) \longrightarrow \boxed{\mathrm{Reconstruction}}\longrightarrow \tilde{f} 
 \]
 
+Mit der Annahme, dass die grössten Koeffizienten für die Signalbeschreibung ausreichend sind, kann davon ausgegangen werden das das Rauschen in vielen kleinen Koeffizienten enthalten ist. Ist dies der Fall wird durch Thresholding das Rauschen eliminiert und das wahre Signal nicht gross beeinträchtigt.
+
+Der Vorteil beim Denoising mit Wavelet ist, zum Ersten dass im Zeit- und Frequenzbereich gleichzeitig gearbeitet wird und zum Zweiten dass Signale, die ihre Eigenschaften mit der Zeit ändern, einfach behandelt werden können (zB: Sprünge). 
+
+\vspace{0.5cm}
+
+\begin{minipage}[c]{0.5\textwidth}
+	Hard-Thresholding mit der Grenze $\tau$:
+	\[ \tilde{v}_{m,n} := \begin{cases} 0 \qquad |v_{m,n}| \leq \tau \\ v_{m,n} \qquad |v_{m,n}| > \tau \end{cases} \]
+\end{minipage}
+\begin{minipage}[c]{0.5\textwidth}
+	Soft-Thresholding (shrinkage) mit Grenze $\tau$:
+	\[ \tilde{v}_{m,n} := \begin{cases} 0 \qquad |v_{m,n}| \leq \tau \\ \mathrm{sign}(v_{m,n}) \cdot (|v_{m,n}-\tau|) \qquad |v_{m,n}| > \tau \end{cases} \]
+\end{minipage}
+
+Gute Resultate werden unter den folgenden Voraussetzungen erreicht:
+\begin{itemize}
+	\item das Signal kann vom Wavelet gut komprimiert werden
+	\item das Rauschen kann nicht komprimiert werden
+	\item SNR($f$) ist genügend gross
+\end{itemize}
+
+
+Wahl von $\tau$, wobei die Schätzung für $sigma_m$ nur für Rauschen gilt, das gaussverteilte Waveletkoeffizienten aufweist:
+
+\begin{minipage}[c]{0.5\textwidth}
+\[
+	\tau_m \approx K \cdot \sqrt{2 \cdot \ln(N)} \cdot \sigma_m  
+\]
+\[
+	\sigma_m \approx \dfrac{\mathrm{median}(|v_{m,n}| \, | n \in  \mathbb{Z})}{0.6745} 
+\]
+\end{minipage}
+\begin{minipage}[c]{0.5\textwidth}
+$K \in [1,2]$\\
+$N$: Anzahl Samples des Signals $f$\\
+median: Ein Wert $m$ ist der Median von einer Menge von Werten wenn die Hälfte aller Werte $\leq m$ und die andere Hälfte $\geq m$ ist.
+\end{minipage}
+
+\begin{itemize}
+	\item White-Noise: Gleiche Grenze $\tau = \tau_1$ in allen Scales ($m=1$ Finest Scale)
+	\item Colored-Noise: Die Grenue $\tau$ wird an jede Scale $m$ angepasst.
+\end{itemize}
+
+
+\subsubsection{Stationary  Wavelet Transformation}
+%TODO
 
 \subsection{Feature Detection and Extraction}
 
