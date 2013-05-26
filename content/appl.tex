@@ -123,7 +123,7 @@ Wahl von $\tau$, wobei die Schätzung für $sigma_m$ nur für Rauschen gilt, das
 \]
 \end{minipage}
 \begin{minipage}[c]{0.5\textwidth}
-$K \in [1,2]$\\
+$K \in [0.2,1.6]$\\
 $N$: Anzahl Samples des Signals $f$\\
 median: Ein Wert $m$ ist der Median von einer Menge von Werten wenn die Hälfte aller Werte $\leq m$ und die andere Hälfte $\geq m$ ist.
 \end{minipage}
@@ -134,8 +134,33 @@ median: Ein Wert $m$ ist der Median von einer Menge von Werten wenn die Hälfte 
 \end{itemize}
 
 
-\subsubsection{Stationary  Wavelet Transformation}
-%TODO
+\subsubsection{Stationary  Wavelet Transformation (SWT)}
+Die Stationäre Wavelet Transformation ist Translation-Invariant (shift-invariant). Die normale Wavelet Transformation ist nicht Translation-Invariant, dies kommt vom downsamplen. Wenn die Anzahl Scales $J$ ist, kann das Signal $f$ $2^J$ mal verzögert werden, bis wieder das gleiche entrauschte Signal berechnet wird. Aus diesem Grund berechnet die SWT  $2^J$ mal die DWT von verzögerten Signal $f$. Bei alle $2^J$ berechneten DWT wird die Verzögerung rückgängig gemacht und gemittelt. Das dabei entstehende Signal ist die SWT von $f$. 
+
+\[ 
+	\tilde{f}^{tr.inv} := \dfrac{1}{2^J} \sum_{k=0}^{2^J-1}T_k \left( \tilde{T}_k(f) \right) 
+	\qquad \qquad
+	T_k \text{: delay um $k$-Sample} \qquad \qquad J\text{: Anzahl Scales (Stages, Level)}
+\]
+
+Um $\tilde{f}^{tr.inv}$ zu berechnen, steigt die Berechnungszeit um Faktor $2^J$ an. Es gibt effizientere Methoden, bei denen der Aufwand auf Faktor $J$ reduziert werden kann.
+
+Die SWT lässt das Downsamplen weg, upsampled statt dessen die Filter! Bei der SWT gibt es redundante Informationen über $f$, was schlecht für Kompressionen aber gut für Denoising (smoothing artifacts caused by thresholding) ist.
+
+\begin{minipage}[l]{0.5\textwidth}
+	Die dazugehörige Filterbank: \\
+	$A_m$ beschreibt den um Faktor 2 upgesampleten Filter $A$ (mit $2^m -1$ Nullen zwischen zwei Filterkoeffizienten eingefügt $(...,a0,0,...,0,a1,0,...,0,a2,0,...)$ )
+\end{minipage}
+\begin{minipage}[r]{0.5\textwidth}
+	\flushright
+	\includegraphics[width=.9\textwidth]{content/swtFilterbank.pdf}
+	\[ \tilde{f}^{tr.inv.}=\mathrm{ISWT}(\mathrm{shrink}(\mathrm{SWT}(f)) \]
+\end{minipage}
+
+
+\subsubsection{Abhängigkeit vom MSE und dem Threshold}
+\[ MSE(\tilde{f}) = \frac{1}{N} \sum |v_{m,n}|^2 = \frac{1}{N}\left(\underbrace{\sum_{|v_{m,n}| < \tau}|v_{m,n}|^2}_{Rauschenergie} + \underbrace{\sum_{|v_{m,n}| \geq \tau}|v_{m,n}|^2}_{Signalenergie}\right) \]
+
 
 \subsection{Feature Detection and Extraction}
 
