@@ -164,4 +164,44 @@ Die SWT lässt das Downsamplen weg, upsampled statt dessen die Filter! Bei der S
 
 \subsection{Feature Detection and Extraction}
 
+Feature eines Signals oder eines Bildes ist ein bestimmter Teil Information darin. In 1 Dimension sind dies Peaks, Sprünge oder irgend welche Muster (pattern). Bei Bilder handelt es sich meist um Kanten, Ränder und Ecken.
+
+Feature Detection meint die Lokalisierung der Gebiete wo das Feature auftritt.
+
+FRR: false rejection rate, die W'keit das der Detektor ein Auftretendes Feature übersieht\\
+FAR: false acceptance rate, die W'keit das der Detektor ein Feature detektiert das keins ist
+
+\subsubsection{Smooting and Differentiation}
+\begin{minipage}[r]{0.5\textwidth}
+Smoothing Kernal: $\Theta$\\
+Skalierter Smoothing Kernal: $\Theta(\frac{\tau - t}{s})$\\
+Smoothed Function: $f_s(t) = \int f(\tau) \cdot \Theta(\frac{\tau - t}{s}) \, \mathrm{d}\tau$\\
+Ableitung der Smoothed Function: 
+\end{minipage}
+\begin{minipage}[r]{0.5\textwidth}
+	\includegraphics[width=0.4\textwidth]{content/SmoothingFunction.pdf}
+	
+	\vspace{-2.2cm}
+	
+	\flushright
+	Abgeleiteter Smoothing Kernal
+	
+	\vspace{.4cm}
+	
+	Smoothing Kernal	
+\end{minipage}
+
+\[ \frac{\mathrm{d}}{\mathrm{d}t}f_s(t) = \int\limits_{-\infty}^{\infty} f(\tau) \cdot \frac{\mathrm{d}}{\mathrm{d}t}\Theta(\frac{\tau - t}{s}) \, \mathrm{d}\tau = -\frac{1}{s} \int\limits_{-\infty}^{\infty} f(\tau) \cdot \Theta'(\frac{\tau - t}{s}) \, \mathrm{d}\tau \]
+
+Wavelet das integriert ein Smoothing Kernal ergibt: Haar-Wavelet ("Abgeleiteter Smoothing Kernal")\\
+Daraus Folgt das die DWT oder SWT (besser) für die Approximation der Ableitung der Smoothed Function verwendet werden kann. Wird die SWT verwendet, dann kennt man die Ableitung der Funktion an allen Punkten.
+\[ 
+	\frac{\mathrm{d}f}{\mathrm{d}t} \approx C(m) \cdot v_{m,n}
+	\qquad \qquad
+	v_{m,n} =  \int\limits_{-\infty}^{\infty} f(\tau) \psi_{m,n}(\tau) \, \mathrm{d}\tau 
+\]
+Das Integral vom Smoothing Kernal muss 1 ergeben, damit das Mittel von $f$ gleich bleibt: 
+\[ \int \underbrace{\int C(m) \psi_{m,n}(\tau) \,\mathrm{d}\tau}_{\Theta} \,\mathrm{d}t = 1 \]
+
+
 \subsection{Matlab}
