@@ -38,7 +38,9 @@ Ein gutes Wavelet ist das bior4.4. Es ist biorthogonal, symmetrisch, hat 4 vanis
 
 Die Operatoren $A_k$ berechnet den Approximationskoeffizient der Stufe $k$. Die Detailkoeffizienten der Stufe $k$ werden durch den Operator $D_k^j$ berechnet. Bei den Detailkoeffizienten wird unter horizontal $j=h$, vertikal $j=v$ und diagonalen $j=d$ Details unterschieden. (Horizontal=parallel zur x-Achse)
 
-\begin{minipage}[c]{0.6\textwidth}
+\includegraphics[width=0.4\textwidth]{content/Wavelet2DDec.pdf}	
+\includegraphics[width=0.4\textwidth]{content/Wavelet2DRec.pdf}
+
 	\[  
 		A_0f = A_mf+\sum_{1}^{k=m}(D_k^hf+D_k^vf+D_k^df)
 	\]
@@ -54,12 +56,9 @@ Die Operatoren $A_k$ berechnet den Approximationskoeffizient der Stufe $k$. Die 
 	\[  
 		D_d^vf(x,y)=\sum_{q\in\mathbb{Z}}\sum_{p\in \mathbb{Z}}v_{k;p,q}^d\Psi_{k;p,q}^d(x,y) = \sum_{q\in\mathbb{Z}}\sum_{p\in \mathbb{Z}}v_{k;p,q}^d \psi_{k,q}(x) \psi_{k,p}(y)
 	\]		
-\end{minipage}
-\begin{minipage}[c]{0.4\textwidth}
-	\includegraphics[width=0.8\textwidth]{content/ZweiDimWaveletTransf.pdf}	
-	\[ u_{k;q,p}=\langle f|\Phi_{k;q,p} \rangle = \iint_{\mathbb{R}^2} f \cdot \Phi_{k;q,p} \, \mathrm{d}x\mathrm{d}y \]
-	\[ = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(x,y) \varphi_{k,q} \varphi_{k,p}(y) \, \mathrm{d}x\mathrm{d}y \]
-\end{minipage}
+\[ 
+	u_{k;q,p}=\langle f|\Phi_{k;q,p} \rangle = \iint_{\mathbb{R}^2} f \cdot \Phi_{k;q,p} \, \mathrm{d}x\mathrm{d}y = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(x,y) \varphi_{k,q} \varphi_{k,p}(y) \, \mathrm{d}x\mathrm{d}y 
+\]
 \[
 	v_{k;q,p}^h=\langle f|\Psi_{k;q,p}^h \rangle = \iint_{\mathbb{R}^2} f \cdot \Psi_{k;q,p}^h \, \mathrm{d}x\mathrm{d}y = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(x,y) \varphi_{k,q} \psi_{k,p}(y) \, \mathrm{d}x\mathrm{d}y \qquad \text{etc.}
 \]
@@ -204,4 +203,9 @@ Das Integral vom Smoothing Kernal muss 1 ergeben, damit das Mittel von $f$ gleic
 \[ \int \underbrace{\int C(m) \psi_{m,n}(\tau) \,\mathrm{d}\tau}_{\Theta} \,\mathrm{d}t = 1 \]
 
 
+
 \subsection{Matlab}
+wavedec, waverec, 
+\lstinputlisting{content/waveDecRecSelf.m}
+
+
