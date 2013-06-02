@@ -204,8 +204,28 @@ Das Integral vom Smoothing Kernal muss 1 ergeben, damit das Mittel von $f$ gleic
 
 
 
-\subsection{Matlab}
-wavedec, waverec, 
+\subsection{Matlab} 
+\subsubsection{Wavelet Decomposition and Reconstruction}
+Im folgenden Matlabcode wird die Wavelet Decomposition (wavedec) und die Wavelet Reconstruction (waverec) über eine Stufe mit der Faltung (conv) der Filterkoeffizenten und dem Signal durchgeführt.
 \lstinputlisting{content/waveDecRecSelf.m}
 
+\subsubsection{Denoising}
+DWT:
 
+Mit konstantem Sigma über alle Level:
+\lstinputlisting{content/denoise.m}
+
+Mit angepasstem Sigma pro Level:
+\lstinputlisting{content/estimateSigmaByLevel.m}
+\lstinputlisting{content/denoiseGivenSigma.m}
+
+SWT:
+\lstinputlisting{content/stationaryWaveletTransform.m} %TODO test this function!
+%TODO denoiseSWT
+
+Noise:
+\begin{lstlisting}
+	r = randn(1,N); %generate uniform or gaussian noise
+	r1 = r(2:end)-r(1:end); %colored noise (more noise at high f)
+	r2 = r(2:end)+r(1:end); %colored noise (more noise at low f)
+\end{lstlisting}
