@@ -202,7 +202,15 @@ Daraus Folgt das die DWT oder SWT (besser) für die Approximation der Ableitung 
 Das Integral vom Smoothing Kernal muss 1 ergeben, damit das Mittel von $f$ gleich bleibt: 
 \[ \int \underbrace{\int C(m) \psi_{m,n}(\tau) \,\mathrm{d}\tau}_{\Theta} \,\mathrm{d}t = 1 \]
 
+Das $C(m)$ vom Haar-Wavelet sieht wie folgt aus:
+\[
+	\frac{1}{C(m)} = \iint \psi_{m,n}(\tau) \,\mathrm{d}\tau \,\mathrm{d}t
+	\qquad \Rightarrow \qquad  
+	C(m)= 2^{-3m/2 + 2} 
+\]
 
+\subsubsection{Wavelets und ihre Eigenschaften}
+%TODO Wavlet vergleichen (serie5p1)
 
 \subsection{Matlab} 
 \subsubsection{Wavelet Decomposition and Reconstruction}
@@ -220,7 +228,7 @@ Mit angepasstem Sigma pro Level:
 \lstinputlisting{content/denoiseGivenSigma.m}
 
 SWT:
-\lstinputlisting{content/stationaryWaveletTransform.m} %TODO test this function!
+\lstinputlisting{content/stationaryWaveletTransform.m} %TODO dose not work!
 \lstinputlisting{content/denoiseSwt.m}
 
 
@@ -230,3 +238,16 @@ Noise:
 	r1 = r(2:end)-r(1:end); %colored noise (more noise at high f)
 	r2 = r(2:end)+r(1:end); %colored noise (more noise at low f)
 \end{lstlisting}
+
+\subsubsection{Feature Detection}
+Ableitung:
+\begin{lstlisting}
+	function [ cm ] = C( m )
+		cm = 2^(-3*m/2+2);
+	end
+\end{lstlisting}
+
+\lstinputlisting{content/derivative.m}
+
+Für die zweite Ableitung kann das Resultat der derivative Funktion einfach nochmals an diese übergeben werden.
+
