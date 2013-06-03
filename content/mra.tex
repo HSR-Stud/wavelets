@@ -137,12 +137,12 @@ Filterbank (durch $-(-1)^k$ werden alle geraden Koeffizienten gelöscht ($=0$) )
 \]
 
 \subsubsection{Orthogonale Filterkoeffizienten}
-Zusammenhang der Filter (shift: $(-z)^k$, alternierendes Vorzeichen$(\pm)$ durch einsetzen von $-z$): TODO ANSCHAUEN!!!
+Zusammenhang der Filter (shift: $(-z)^k$, inverse Reihenfolge durch $z^{-1}$, alternierendes Vorzeichen$(\pm)$ durch einsetzen von $-z$):
 \[  
-	\tilde{A}(z) = A(z)
+	\tilde{A}(z) = A(z^{-1})
 	\qquad \qquad
-	\tilde{D} = D(z) = (-z)^k\tilde{A}(-z)
-\]
+	D(z) = \tilde{D}(z^{-1}) = (-z)^k\tilde{A}(-z) \qquad k\text{: Filterlänge}
+\] %TODO wo ist z^0 und wo z^n (Skript seite 27 + application db2 vergleichen???)
 \[  
 	A = [a_0,...,a_n] \qquad
 	\tilde{A} = [a_n,...,a_0]
@@ -153,7 +153,7 @@ Zusammenhang der Filter (shift: $(-z)^k$, alternierendes Vorzeichen$(\pm)$ durch
 
 \subsubsection{Biorthogonal Filterkoeffizienten}
 
-Zusammenhang der Filter (shift: $(-z)^k$ bzw. $-z^{-k}$, alternierendes Vorzeichen$(\pm)$ durch einsetzen von $-z$): TODO ANSCHAUEN!!!
+Zusammenhang der Filter (shift: $(-z)^k$ bzw. $-z^{-k}$, alternierendes Vorzeichen$(\pm)$ durch einsetzen von $-z$):
 \[ 
 	D(z) = (-z)^k\tilde{A}(-z) \qquad \qquad \tilde{D}(z) = -z^{-k}A(-z)
 \]
