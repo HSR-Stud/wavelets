@@ -23,7 +23,7 @@ $\mathrm{PSNR}(\tilde{f}) := 10 \cdot \log_{10}(\frac{K^2}{\mathrm{MSE}(\tilde{f
 
 Ziel ist es das Signal $f$ in eine Basis zu Transformieren, bei der viel Koeffizienten 0 oder sehr klein werden. Bei der Quantisierung werden diese kleinen Koeffizienten auf 0 quantisiert. Diese Koeffizienten können durch eine effizientes Entropy Coding komprimiert abgespeichert werden.\\
 
-Waveletkompression:
+\textbf{Waveletkompression:}
 \begin{itemize}
 	\item Analyse Wavelet: sollte einige verschwindende Momente haben
 	\item Synthese Wavelet: die synthese Funktion sollte eine gute Regularität aufweisen
@@ -31,7 +31,11 @@ Waveletkompression:
 	\item Orthogonalität
 	\item kurze Filter für bessere Performance (Mehr verschwindende Momente und bessere Regularität erhöhen die Filterlänge)
 \end{itemize}
-Ein gutes Wavelet ist das bior4.4. Es ist biorthogonal, symmetrisch, hat 4 vanishing Moments, das Synthese Wavelet hat eine Regularität die grosser als 1.3 ist. Die resultierenden Filter weisen 7 bzw. 9 Filterkoeffizienten auf.
+Ein gutes Wavelet ist das bior4.4. Es ist biorthogonal, symmetrisch, hat 4 vanishing Moments, das Synthese Wavelet hat eine Regularität die grosser als 1.3 ist. Die resultierenden Filter weisen 7 bzw. 9 Filterkoeffizienten auf.\\
+
+\textbf{Bemerkungen:}\\
+sym vs bior: bior4.4 hat eine bessere Regularität als sym4 (bessere visuelle Qualität bei einem Bild)\\
+Wavelet mit langen Filtern erzeugen "ringing" an den Kanten (vergleichbar mit Gibbs-Phänomen bei Fourier)\\
 
 
 \subsubsection{Zwei-Dimensionale Wavelettransformation}
@@ -95,11 +99,11 @@ Der Vorteil beim Denoising mit Wavelet ist, zum Ersten dass im Zeit- und Frequen
 \vspace{0.5cm}
 
 \begin{minipage}[c]{0.5\textwidth}
-	Hard-Thresholding mit der Grenze $\tau$:
+	\textbf{Hard-Thresholding} mit der Grenze $\tau$:
 	\[ \tilde{v}_{m,n} := \begin{cases} 0 \qquad |v_{m,n}| \leq \tau \\ v_{m,n} \qquad |v_{m,n}| > \tau \end{cases} \]
 \end{minipage}
 \begin{minipage}[c]{0.5\textwidth}
-	Soft-Thresholding (shrinkage) mit Grenze $\tau$:
+	\textbf{Soft-Thresholding} (shrinkage) mit Grenze $\tau$:
 	\[ \tilde{v}_{m,n} := \begin{cases} 0 \qquad |v_{m,n}| \leq \tau \\ \mathrm{sign}(v_{m,n}) \cdot (|v_{m,n}-\tau|) \qquad |v_{m,n}| > \tau \end{cases} \]
 \end{minipage}
 
@@ -209,8 +213,119 @@ Das $C(m)$ vom Haar-Wavelet sieht wie folgt aus:
 	C(m)= 2^{-3m/2 + 2} 
 \]
 
+
 \subsubsection{Wavelets und ihre Eigenschaften}
-%TODO Wavlet vergleichen (serie5p1)
+
+\begin{tabular}{l||l|l|l|l|l|l}
+	Eigenschaft 		& haar 	& dbN 	& symN 	& coifN	& biorNr.Nd	& rbioNd.Nr	\\
+	\hline
+	\hline
+	Ordnung Decomp.				& 1		& 1,...	& 1,...	& 1-5	& Nd (2)					& Nd (2)	\\
+	\hline
+	Ordnung Recons.				& 1		& 1,...	& 1,...	& 1-5	& Nr (2)					& Nr (2)	\\
+	\hline
+	Biorthgonality 				& ja	& ja	& ja	& ja	& ja						& ja		\\
+	\hline
+	Orthgonality 				& ja	& ja	& ja	& ja	& nein						& nein		\\
+	\hline
+	Compact support 			& ja 	& ja	& ja	& ja	& ja						& ja		\\
+	\hline
+	Support width 				& 1 	& 2N-1	& 2N-1	& 6N-1	& rec :2Nr+1, dec: 2Nd+1	& rec :2Nr+1, dec: 2Nd+1	\\
+	\hline
+	Filter length 				&  2 	& 2N	& 2N	& 6N	& (3) 						& (3)		\\
+	\hline
+	Regularity 					& nein 	& (1)	& (1)	& (1)	& (4)						& (5)	\\
+	\hline
+	Symmetry  					& ja 	& nein	& fast	& fast	& ja						& ja		\\
+	\hline
+	Vanishing moments $\Psi$ 	& 1		& 	N	&	N	& 2N	& Nr						& Nd		\\
+	\hline
+	Vanishing moments $\Phi$ 	& -		& 	-	&	-	& 2N-1	& - 						& -		\\
+\end{tabular}
+
+(1): für grosse N ist das DB Wavelet Regulär! (Regularity: 0.2 N)\\
+(2): Nr=1: Nd=1,3,5; Nr=2, Nd=2,4,6,8; Nr=3, Nd=1,3,5,7,9; Nr=4, Nd=4; Nr=5, Nd=5; Nr=8, Nd=8\\
+(3): zB: (Nr.Nd: Ld, Lr) 1.3: 6, 2; 2,2: 5, 3 \\
+(4): Regularität für Psi bei der rec.: Nr-1 und Nr-2 an den Knoten\\
+(5): Regularität für Psi bei der rec.: Nd-1 und Nd-2 an den Knoten\\
+
+\textbf{Spezialitäten der Wavelets:}\\
+\textbf{db:} grösste Anzahl von vanishing moments für eine gegebene support width, minimum-phase filters\\
+\textbf{sym:} beinahe symmetrisch, grösste Anzahl von vanishing moments für eine gegebene support width, near linear-phase filters\\ 
+\textbf{coif:} grösste Anzahl von vanishing moments für $\Psi$ und $\Phi$ für eine gegebene support width\\
+\textbf{bior, rbio:} symmetrisches biorthogonal spline wavelet, exakter Rekonstruktion, mit FIR Filter (orthogonal ist dies nur mit dem Haar Wavelet möglich)\\
+
+\begin{tabular}{l||m{0.3\textwidth}|m{0.3\textwidth}|m{0.3\textwidth}}
+	Type & Scalingfunction $\Phi$ & Wavelet $\Psi$ & Filtercoeffs\\
+	\hline
+	haar & 
+	\includegraphics[width=0.3\textwidth]{content/HaarPhi.png} &
+	\includegraphics[width=0.3\textwidth]{content/HaarPsi.png} & 
+	\begin{align}
+		A = \frac{1}{\sqrt{2}} \cdot [\mathbf{1}, 1] \nonumber\\ 
+		D = \frac{1}{\sqrt{2}} \cdot [\mathbf{-1}, 1] \nonumber\\
+		\tilde{A} = \frac{1}{\sqrt{2}} \cdot [\mathbf{1}, 1] \nonumber\\ 
+		\tilde{D} = \frac{1}{\sqrt{2}} \cdot [\mathbf{1}, -1] \nonumber
+	\end{align} \\
+	db2 &
+	\includegraphics[width=0.3\textwidth]{content/Db2Phi.png} &
+	\includegraphics[width=0.3\textwidth]{content/Db2Psi.png} & 
+	\begin{align}
+		A = \frac{1}{4\sqrt{2}} \cdot [\mathbf{(1+\sqrt{3})}, (3+\sqrt{3}),  \nonumber\\
+		(3-\sqrt{3}), (1-\sqrt{3})] \nonumber\\
+		D = \frac{1}{4\sqrt{2}} \cdot [\mathbf{(1-\sqrt{3})}, (-3+\sqrt{3}),  \nonumber\\
+		(3-\sqrt{3}), (-1+\sqrt{3})] \nonumber\\
+		\tilde{A} = \frac{1}{4\sqrt{2}} \cdot [\mathbf{(1-\sqrt{3})}, (3-\sqrt{3}),  \nonumber\\
+		(3+\sqrt{3}), (1+\sqrt{3})] \nonumber\\
+		\tilde{D} = \frac{1}{4\sqrt{2}} \cdot [\mathbf{(-1-\sqrt{3})}, (3+\sqrt{3}),  \nonumber\\
+		(-3+\sqrt{3}), (1-\sqrt{3})] \nonumber
+	\end{align} \\
+\end{tabular}
+
+\begin{tabular}{l||m{0.3\textwidth}|m{0.3\textwidth}}
+	Type & Scalingfunction $\Phi$ & Wavelet $\Psi$ \\
+	\hline
+	db5 &
+	\includegraphics[width=0.3\textwidth]{content/Db5Phi.png} &
+	\includegraphics[width=0.3\textwidth]{content/Db5Psi.png} \\
+	sym2 & 
+	\includegraphics[width=0.3\textwidth]{content/Sym2Phi.png} &
+	\includegraphics[width=0.3\textwidth]{content/Sym2Psi.png} \\
+	sym4 & 
+	\includegraphics[width=0.3\textwidth]{content/Sym4Phi.png} &
+	\includegraphics[width=0.3\textwidth]{content/Sym4Psi.png} \\
+	coif1 &
+	\includegraphics[width=0.3\textwidth]{content/Coif1Phi.png} &
+	\includegraphics[width=0.3\textwidth]{content/Coif1Psi.png} \\
+	coif3 &
+	\includegraphics[width=0.3\textwidth]{content/Coif3Phi.png} &
+	\includegraphics[width=0.3\textwidth]{content/Coif3Psi.png} \\
+\end{tabular}
+
+\begin{tabular}{L{0.15\textwidth}||m{0.3\textwidth}|m{0.3\textwidth}}
+	Type & Scalingfunction $\Phi$ & Wavelet $\Psi$ \\
+	\hline
+	bior1.3 (dec.) \newline rbio1.3 (rec.) & 
+	\includegraphics[width=0.3\textwidth]{content/Bior13PhiDec.png} &
+	\includegraphics[width=0.3\textwidth]{content/Bior13PsiDec.png} \\
+	bior1.3 (rec.) \newline rbio1.3 (dec.) & 
+	\includegraphics[width=0.3\textwidth]{content/Bior13PhiRec.png} &
+	\includegraphics[width=0.3\textwidth]{content/Bior13PsiRec.png} \\
+	\hline
+	bior2.2 (dec.) \newline rbio2.2 (rec.) & 
+	\includegraphics[width=0.3\textwidth]{content/Bior22PhiDec.png} &
+	\includegraphics[width=0.3\textwidth]{content/Bior22PsiDec.png} \\
+	bior2.2 (rec.) \newline rbio2.2 (dec.) & 
+	\includegraphics[width=0.3\textwidth]{content/Bior22PhiRec.png} &
+	\includegraphics[width=0.3\textwidth]{content/Bior22PsiRec.png} \\
+	\hline
+	bior4.4 (dec.) \newline rbio4.4 (rec.) & 
+	\includegraphics[width=0.3\textwidth]{content/Bior44PhiDec.png} &
+	\includegraphics[width=0.3\textwidth]{content/Bior44PsiDec.png} \\
+	bior4.4 (rec.) \newline rbio4.4 (dec.) & 
+	\includegraphics[width=0.3\textwidth]{content/Bior44PhiRec.png} &
+	\includegraphics[width=0.3\textwidth]{content/Bior44PsiRec.png} \\
+\end{tabular}
 
 \subsection{Matlab} 
 \subsubsection{Wavelet Decomposition and Reconstruction}

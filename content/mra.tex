@@ -137,16 +137,23 @@ Filterbank (durch $-(-1)^k$ werden alle geraden Koeffizienten gelöscht ($=0$) )
 \]
 
 \subsubsection{Orthogonale Filterkoeffizienten}
-Zusammenhang der Filter (shift: $(-z)^k$, alternierendes Vorzeichen$(\pm)$ durch einsetzen von $-z$):
+Zusammenhang der Filter (shift: $(-z)^k$, alternierendes Vorzeichen$(\pm)$ durch einsetzen von $-z$): TODO ANSCHAUEN!!!
 \[  
 	\tilde{A}(z) = A(z)
 	\qquad \qquad
 	\tilde{D} = D(z) = (-z)^k\tilde{A}(-z)
 \]
+\[  
+	A = [a_0,...,a_n] \qquad
+	\tilde{A} = [a_n,...,a_0]
+	\qquad \qquad
+	D = [a_n,-a_{n-1}, a_{n-2},...,a_1,-a_0] \qquad
+	\tilde{D} = [-a_0,a_1, -a_2,...,-a_{n-1},a_n]
+\]
 
 \subsubsection{Biorthogonal Filterkoeffizienten}
 
-Zusammenhang der Filter (shift: $(-z)^k$ bzw. $-z^{-k}$, alternierendes Vorzeichen$(\pm)$ durch einsetzen von $-z$):
+Zusammenhang der Filter (shift: $(-z)^k$ bzw. $-z^{-k}$, alternierendes Vorzeichen$(\pm)$ durch einsetzen von $-z$): TODO ANSCHAUEN!!!
 \[ 
 	D(z) = (-z)^k\tilde{A}(-z) \qquad \qquad \tilde{D}(z) = -z^{-k}A(-z)
 \]
