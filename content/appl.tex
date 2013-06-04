@@ -350,7 +350,7 @@ Das $C(m)$ vom Haar-Wavelet sieht wie folgt aus:
 
 \subsubsection{Wavelet Decomposition and Reconstruction}
 Im folgenden Matlabcode wird die Wavelet Decomposition (wavedec) und die Wavelet Reconstruction (waverec) über eine Stufe mit der Faltung (conv) der Filterkoeffizenten und dem Signal durchgeführt.
-\lstinputlisting{content/waveDecRecSelf.m}
+\lstinputlisting[language=Matlab]{content/waveDecRecSelf.m}
 
 
 
@@ -359,13 +359,13 @@ Im folgenden Matlabcode wird die Wavelet Decomposition (wavedec) und die Wavelet
 
 \vspace{-0.4cm}
 
-\begin{lstlisting}
+\begin{lstlisting}[language=Matlab]
 	function [ cm ] = C( m )
 		cm = 2^(-3*m/2+2);
 	end
 \end{lstlisting}
 
-\lstinputlisting{content/derivative.m}
+\lstinputlisting[language=Matlab]{content/derivative.m}
 
 Für die zweite Ableitung kann das Resultat der derivative Funktion einfach nochmals an diese übergeben werden.
 
@@ -377,7 +377,7 @@ Für die zweite Ableitung kann das Resultat der derivative Funktion einfach noch
 
 \vspace{-0.4cm}
 
-\begin{lstlisting}
+\begin{lstlisting}[language=Matlab]
 	r = randn(1,N); %generate uniform or gaussian noise
 	r1 = r(2:end)-r(1:end); %colored noise (more noise at high f)
 	r2 = r(2:end)+r(1:end); %colored noise (more noise at low f)
@@ -388,21 +388,21 @@ Mit konstantem Sigma über alle Level:
 
 \vspace{-0.4cm}
 
-\lstinputlisting{content/denoise.m}
+\lstinputlisting[language=Matlab]{content/denoise.m}
 
 Mit angepasstem Sigma pro Level:
 
 \vspace{-0.4cm}
 
-\lstinputlisting{content/estimateSigmaByLevel.m}
+\lstinputlisting[language=Matlab]{content/estimateSigmaByLevel.m}
 \newpage
-\lstinputlisting{content/denoiseGivenSigma.m}
+\lstinputlisting[language=Matlab]{content/denoiseGivenSigma.m}
 
 \newpage
 \textbf{SWT:}
 
 \vspace{-0.4cm}
 
-\lstinputlisting{content/stationaryWaveletTransform.m}
-\lstinputlisting{content/denoiseSwt.m}
+\lstinputlisting[language=Matlab]{content/stationaryWaveletTransform.m}
+\lstinputlisting[language=Matlab]{content/denoiseSwt.m}
 

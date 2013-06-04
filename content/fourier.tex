@@ -66,7 +66,7 @@ Finit Fourier Transformation: \[ \hat{h}_k = c_T \cdot \lambda_k = c_T \cdot \su
 Inverse Finit Fourier Transformation: \[ h_t = \frac{1}{c_T T} \cdot \sum_{k=0}^{T-1}\hat{h}_k \e^{+jk\omega t} \]
 Wobei $c_T = \frac{1}{T}$. Mehr Symmetrie kann durch die Wahl von $c_T = \frac{1}{\sqrt{T}}$ erreicht werden. Dann gilt $||h||^2=||\hat{h}||^2$
 
-(FFT rein nehmen ???)
+%TODO abklären ob FFT noch eingefügt werden soll
 
 \subsection{Fourierreihe, Laurentreihe, Z-Transformation}
 
@@ -75,6 +75,7 @@ Frequenzgang: \[ \hat{h}(\xi) = H(\e^{2\pi j \xi})=\sum h_k \e^{-2\pi jk \xi} \q
 
 (Die DFT ist nur die inverse Fourierreihe mit Periode $T=1$ und einem Signum.)
 
+\newpage
 \subsection{Fouriertransformation on $\mathbf{L^2(\mathbb{R})}$}
 
 Fouriertransform (FT): \[ \hat{f}(\xi) = \int_{-\infty}^{\infty}f(t) \e^{-j 2\pi \xi t} \, \mathrm{d}t \qquad \qquad \xi = \frac{k}{T} \text{ wobei } (T \rightarrow \infty) \]
@@ -91,4 +92,17 @@ Faltung: \[ h = (f\ast g)(t) \FT \hat{h} = \hat{f} \cdot \hat{g} \]
 Derivative: \[ h = f' \FT \hat{h} = j2\pi\xi\cdot\hat{f}(\xi) \]
 Scaling: \[ h(t) = f(at) \FT \hat{h}(\xi) = \frac{1}{|a|} \cdot \hat{f}(\frac{\xi}{a}) \]
 
-Unschärefe, Sampling Theorem und Aliasing rein nehmen???
+\subsubsection{Unschärferelation}
+Je mehr das Signal bei 0 konzentriert ist, desto kleiner ist die Varianz $\int\limits_{\mathbb{R}} t^2 \cdot |f(t)|^2 \,\mathrm{d}t$.\\
+Die Aussage der Unschärferelation: Lokale Information wird von der FT verschmiert!
+(Grosse Varianz: schlecht konzentriert, kleine Varianz: gut konzentriert)
+
+\[  
+	\int\limits_{-\infty}^\infty t^2 \cdot |f(t)|^2 \, \mathrm{d}t \cdot \int\limits_{-\infty}^\infty \xi^2 \cdot |f(\xi)|^2 \, \mathrm{d}\xi
+	\geq \frac{1}{16 \pi^2} ||f||^2||\hat{f}||^2 \underbrace{= \frac{1}{16 \pi^2} ||f||^4}_{\text{ Plancherel}}
+\]
+
+Wenn $f(t)=C \cdot \mathrm{e}^{-kt^2}$ aufweist, kann das $=$ in der obigen Ungleichung erreicht werden. (Wird die Fouriertransformation ohne $2\pi$ im Exponent definiert, dann wird der Faktor $\frac{1}{16\pi^2}$ zu $\frac{1}{4}$)
+
+%\subsubsection{Sampling, Undersampling, Aliasing}
+%TODO: Abklären ob Samplingtheorem und Aliasing benötig wird?

@@ -14,6 +14,9 @@ f(t)\cos(\omega t)dt \quad \mbox{ und } \quad X(\omega)=
 \int\limits_{-\infty}^{\infty}f(t)\sin(\omega t)dt 
 \]
 
+\subsection{Spektern}
+\includegraphics[width=0.8\textwidth,trim=1cm 1cm 1cm 1cm]{content/appendix/Spektern.pdf}
+
 \newpage	
 \subsection{Eigenschaften}
 Fourierintegral existiert wenn  $\int\limits_{-\infty}^{\infty}|f(t)| dt < \infty$\\
@@ -78,6 +81,11 @@ Fourierintegral existiert wenn  $\int\limits_{-\infty}^{\infty}|f(t)| dt < \inft
 \end{tabular}
 \renewcommand{\arraystretch}{1}
 
+
+\subsection{Wichtige Fourier Transformationspaare}
+\input{content/appendix/fourierTabelle.tex}
+  
+  
 \subsection{Fourierreihe durch periodisches fortsetzen der Fouriertransformation}
 \[
 s(t) = \sum\limits_{n=-\infty}^{\infty} c_n \e^{j\omega_0 n t} \FT S(\omega) = 2\pi \sum\limits_{n=-\infty}^{\infty}c_n \delta(\omega - n\omega_0)
@@ -92,14 +100,4 @@ c_n = \frac{1}{T}S_0(n\omega_0) \text{ wobei } \omega_0 = \frac{2\pi}{T} \text{ 
 $s_0(t)$ stellt eine Periode des Signals $s(t)$ mit Fourierreihe
 & \multirow{2}{12cm}{\includegraphics[width=0.25\textwidth]{content/appendix/FTperiodisch.pdf}} \\
 $s(t) = \sum c_n \e^{jn\omega_0}$ dar. & \\
-\end{tabular}
-
-\vspace{1cm}
-
-\subsection{Spektern}
-\includegraphics[width=\textwidth,trim=1cm 1cm 1cm 1cm]{content/appendix/Spektern.pdf}
-
-
-\subsection{Wichtige Fourier Transformationspaare}
-  \input{content/appendix/fourierTabelle.tex}
-	
+\end{tabular}	

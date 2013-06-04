@@ -6,7 +6,7 @@ Skalierungsfunktion (Mother scaling function $\varphi(t)$):
 	\varphi_{m,n}(t)=2^{-m/2} \cdot \varphi(2^{-m}\cdot t - n) = \frac{1}{\sqrt{2^{m}}} \cdot \varphi(2^{-m}\cdot t -n) = 2^{-m/2} \cdot \varphi(2^{-m}\cdot (t - 2^{m}\cdot n))
 \]
 
-Axioms (Anforderungen) die eine Skalierungsfunktion erfüllen muss:
+\textbf{Axioms} (Anforderungen) die eine Skalierungsfunktion erfüllen muss:
 \begin{enumerate}
 	\item orthonormality: $ \langle \varphi_{0,n}|\varphi_{0,n'} \rangle = \delta_{n,n'} =  \begin{cases} 1 \quad n=n'\\ 0 \quad sonst  \end{cases}  $
 	\item 2-scaling: $ \varphi(t) = \sqrt{2} \sum_{k \in \mathbb{Z}} h_k \cdot \varphi(2t-k) = \sum_{k \in \mathbb{Z}} h_k \cdot \varphi_{-1,k}(t) \qquad \varphi_{m,n}=\sum_{k \in \mathbb{Z}} h_k \cdot \varphi_{m-1,2n+k} $
@@ -53,17 +53,17 @@ Wavelet:
 	\left(\psi_{0,0}=\sum_{k \in \mathbb{Z}} (-1)^k h_{l-k} \sqrt{2}  \varphi_{0,0}(2t-k) = \sum_{k \in \mathbb{Z}} g_k \varphi_{-1,k} \quad l \in \mathbb{Z}_{ungerade} \right)
 \]
 
-Fast Wavelet Transform (Decomposition / Reconstruction):
+\textbf{Fast Wavelet Transform} (Decomposition / Reconstruction):
 \[
 	\boxed{\begin{array}{ccccc}
-		u_m & \xrightarrow{H'} & u_{m+1} & \xrightarrow{H'} & u_{m+2} \\
-		& \searrow^{G'} & & \searrow^{G'} & \\
+		u_m & \xrightarrow{A} & u_{m+1} & \xrightarrow{A} & u_{m+2} \\
+		& \searrow^{D} & & \searrow^{D} & \\
 		& & \nu_{m+1} & & \nu_{m+2} \\
 	\end{array}}
 	\qquad \qquad \qquad \qquad
 	\boxed{\begin{array}{ccccc}
-		u_{m+2} & \xrightarrow{H} & u_{m+1} & \xrightarrow{H} & u_{m} \\
-		& \nearrow_G & & \nearrow_G & \\
+		u_{m+2} & \xrightarrow{\tilde{A}} & u_{m+1} & \xrightarrow{\tilde{A}} & u_{m} \\
+		& \nearrow_{\tilde{D}} & & \nearrow_{\tilde{D}} & \\
 		\nu_{m+2}& & \nu_{m+1} & & \\
 	\end{array}}
 \]
@@ -75,15 +75,15 @@ Fast Wavelet Transform (Decomposition / Reconstruction):
 \]
 
 \[
-	H'(x)_n = \sum_{k \in  \mathbb{Z}} h_{k-2n} x_k
+	A(x)_n = \sum_{k \in  \mathbb{Z}} h_{k-2n} x_k
 	\qquad \qquad \qquad \qquad
-	H(x)_n = \sum_{k \in  \mathbb{Z}} h_{n-2k} x_k
+	\tilde{A}(x)_n = \sum_{k \in  \mathbb{Z}} h_{n-2k} x_k
 \]
 
 \[
-	G'(x)_n = \sum_{k \in  \mathbb{Z}} g_{k-2n} x_k
+	D(x)_n = \sum_{k \in  \mathbb{Z}} g_{k-2n} x_k
 	\qquad \qquad \qquad \qquad
-	G(x)_n = \sum_{k \in  \mathbb{Z}} g_{n-2k} x_k
+	\tilde{D}(x)_n = \sum_{k \in  \mathbb{Z}} g_{n-2k} x_k
 \]
 
 
@@ -97,7 +97,7 @@ Vereinfachung des Analyseschritts für die Handrechnung $k-2n=l\rightarrow k=l+2
 
 \subsection{Biorthogonal MRA}
 
-Axioms (Anforderungen) die eine Skalierungsfunktion erfüllen muss:
+\textbf{Axioms} (Anforderungen) die eine Skalierungsfunktion erfüllen muss:
 \begin{enumerate}
 	\item biorthogonality: $ \langle \varphi_{m,n}|\tilde{\varphi}_{p,q} \rangle = \delta_{m,p}\cdot \delta_{n,p} \qquad \qquad \left( \langle \varphi_{0,n}|\tilde{\varphi}_{0,0} \rangle = \delta_{0,n} \right)$
 	\item 2-scaling: $ \varphi_{0,0}(t) = \sum_{k \in \mathbb{Z}} h_k \cdot \varphi_{-1,k}(t) \qquad \qquad  \tilde{\varphi}_{0,0}(t) = \sum_{k \in \mathbb{Z}} h_k \cdot \tilde{\varphi}_{-1,k}(t) $
@@ -138,23 +138,28 @@ Filterbank (durch $-(-1)^k$ werden alle geraden Koeffizienten gelöscht ($=0$) )
 
 \subsubsection{Orthogonale Filterkoeffizienten}
 Zusammenhang der Filter (shift: $(-z)^k$, inverse Reihenfolge durch $z^{-1}$, alternierendes Vorzeichen$(\pm)$ durch einsetzen von $-z$):
+%TODO wo ist z^0 und wo z^n (Skript seite 27 + application db2 vergleichen???)
 \[  
 	\tilde{A}(z) = A(z^{-1})
 	\qquad \qquad
-	D(z) = \tilde{D}(z^{-1}) = (-z)^k\tilde{A}(-z) \qquad k\text{: Filterlänge}
-\] %TODO wo ist z^0 und wo z^n (Skript seite 27 + application db2 vergleichen???)
-\[  
-	A = [a_0,...,a_n] \qquad
-	\tilde{A} = [a_n,...,a_0]
-	\qquad \qquad
-	D = [a_n,-a_{n-1}, a_{n-2},...,a_1,-a_0] \qquad
-	\tilde{D} = [-a_0,a_1, -a_2,...,-a_{n-1},a_n]
+	D(z) = \tilde{D}(z^{-1}) = (-z)^l\tilde{A}(-z) \qquad l\text{: Filterlänge}
 \]
+\[  
+	A = [h_0,...,h_n] \qquad
+	\tilde{A} = [h_n,...,h_0]
+	\qquad \qquad
+	D = [h_n,-h_{n-1}, h_{n-2},...,h_1,-h_0] \qquad
+	\tilde{D} = [-h_0,h_1, -h_2,...,-h_{n-1},h_n]
+\]
+
+Mit einer orthogonalen Filterbank hat man Quadrature Mirror Filter Eigenschaften:\\
+ $|\hat{h}(\xi)|^2 + |\hat{g}(\xi)|^2 = |\hat{\tilde{h}}(\xi)|^2 + |\hat{\tilde{g}}(\xi)|^2 = 2$
 
 \subsubsection{Biorthogonal Filterkoeffizienten}
 
 Zusammenhang der Filter (shift: $(-z)^k$ bzw. $-z^{-k}$, alternierendes Vorzeichen$(\pm)$ durch einsetzen von $-z$):
+%TODO wo ist z^0 und wo z^n (Skript seite 27 + application db2 vergleichen???)
 \[ 
-	D(z) = (-z)^k\tilde{A}(-z) \qquad \qquad \tilde{D}(z) = -z^{-k}A(-z)
+	D(z) = (-z)^l\tilde{A}(-z) \qquad \qquad \tilde{D}(z) = -z^{-l}A(-z)  \qquad l\text{: Filterlänge}
 \]
 
