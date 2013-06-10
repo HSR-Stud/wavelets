@@ -19,8 +19,11 @@ Daraus ergeben sich folgende einfachen Konsequenzen:
 \[ 
 	\sum_{k \in \mathbb{Z}} h_k = \sqrt{2} \qquad \qquad (\text{z.B.: } h_0 + h_1 + h_3 + h_4 + h_5 = \sqrt{2})
 \]
+Double-Shift -orthogonality:
 \[
-	\delta_{0,n} = \sum_{k \in \mathbb{Z}} h_k h_{k-2n} \qquad \qquad (\text{z.B.: } h_0h_2 + h_1h_3 + h_2h_4 + h3_h5 = h_0h_4+h_1h_5 = 0 )
+	\delta_{0,n} = \sum_{k \in \mathbb{Z}} h_k h_{k-2n} 
+	\qquad \qquad 
+	(\text{z.B.: } h_0h_2 + h_1h_3 + h_2h_4 + h3_h5 = h_0h_4+h_1h_5 = 0 )
 \]
 
 Scale space: 
@@ -50,7 +53,7 @@ Wavelet:
 \[
 	\psi_{m,n} = \sum_{k \in \mathbb{Z}} g_k \varphi_{m-1,2n+k} 
 	\qquad \qquad 
-	\left(\psi_{0,0}=\sum_{k \in \mathbb{Z}} (-1)^k h_{l-k} \sqrt{2}  \varphi_{0,0}(2t-k) = \sum_{k \in \mathbb{Z}} g_k \varphi_{-1,k} \quad l \in \mathbb{Z}_{ungerade} \right)
+	\left(\psi_{0,0}=\sum_{k \in \mathbb{Z}} (-1)^k h_{l-k} \sqrt{2}  \varphi_{0,0}(2t-k) = \sum_{k \in \mathbb{Z}} g_k \varphi_{-1,k} \quad \underbrace{l \in \mathbb{Z}_{ungerade}}_{\text{frei wählbar}} \right)
 \]
 
 \textbf{Fast Wavelet Transform} (Decomposition / Reconstruction):
@@ -108,7 +111,7 @@ Einfache Konsequenzen sind:
 \[ 
 	\sum_{k \in  \mathbb{Z}} h_k = \sum_{k \in  \mathbb{Z}} \tilde{h}_k = \sqrt{2} 
 	\qquad \qquad
-	\sum_{k \in  \mathbb{Z}} h_k \tilde{h}_k = \delta_{0,n}
+	\text{Double shift orthogonality:} \quad \sum_{k \in  \mathbb{Z}} h_k \tilde{h}_{k+2n} = \delta_{0,n}
 \]
 
 $  
@@ -116,6 +119,17 @@ $
 	\qquad \qquad
 	\text{Synthese-Funktion: } \tilde{\varphi}_{m,n} \quad \tilde{\psi}_{m,n}
 $
+
+\vspace{2mm}
+
+Wavelet:
+\[
+	\psi_{0,0}=\sum_{k \in \mathbb{Z}} (-1)^k \tilde{h}_{l-k} \sqrt{2}  \varphi_{0,0}(2t-k) = \sum_{k \in \mathbb{Z}} g_k \varphi_{-1,k} 
+	\qquad
+	\tilde{\psi}_{0,0}=\sum_{k \in \mathbb{Z}} (-1)^k h_{l-k} \sqrt{2}  \tilde{\psi}_{0,0}(2t-k) = \sum_{k \in \mathbb{Z}} \tilde{g}_k \tilde{\psi}_{-1,k} 
+	\qquad 
+	\underbrace{l \in \mathbb{Z}_{odd}}_{\text{frei wählbar}}
+\]
 
 
 \subsection{Filterbank Beschreibung}
@@ -142,7 +156,7 @@ Zusammenhang der Filter (shift: $(-z)^k$, inverse Reihenfolge durch $z^{-1}$, al
 \[  
 	\tilde{A}(z) = A(z^{-1})
 	\qquad \qquad
-	D(z) = \tilde{D}(z^{-1}) = (-z)^l\tilde{A}(-z) \qquad l\text{: Filterlänge}
+	D(z) = \tilde{D}(z^{-1}) = (-z)^l\tilde{A}(-z) \qquad l\text{: ungerade, frei wählbar}
 \]
 \[  
 	A = [h_0,...,h_n] \qquad
@@ -160,6 +174,6 @@ Mit einer orthogonalen Filterbank hat man Quadrature Mirror Filter Eigenschaften
 Zusammenhang der Filter (shift: $(-z)^k$ bzw. $-z^{-k}$, alternierendes Vorzeichen$(\pm)$ durch einsetzen von $-z$):
 %TODO wo ist z^0 und wo z^n (Skript seite 27 + application db2 vergleichen???)
 \[ 
-	D(z) = (-z)^l\tilde{A}(-z) \qquad \qquad \tilde{D}(z) = -z^{-l}A(-z)  \qquad l\text{: Filterlänge}
+	D(z) = (-z)^{-l}\tilde{A}(-z^{-1}) \qquad \qquad \tilde{D}(z) = (-z)^{l}A(-z^{-1})  \qquad l\text{: ungerade, frei wählbar}
 \]
 
