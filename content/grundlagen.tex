@@ -57,9 +57,9 @@ $L^2(\mathbb{R}) \qquad$ Menge der quadratintegrierbaren Funktionen $\int_{-\inf
 
 ($L^2(\mathbb{R})$ und $L^2(T)$ sind Hilberträume, da sie ein Skalarprodukt mit gewissen Axiomen erfüllt.)
 
-$L^2$-Norm $||f-f_n|| \qquad$ Mass für die Güte der Approximation $f_n$ von der Funktion $f$
+$L^2$-Norm $||f-f_n||^2 \qquad$ Mass für die Güte der Approximation $f_n$ von der Funktion $f$
 
 $L(\mathbb{R}) \qquad \int_{-\infty}^{\infty}|f(t)| \mathrm{d}t < \infty$ oder $L(T) \qquad \int_{0}^{T}|f(t)|^2 \mathrm{d}t < \infty$
 
 \subsection{Punktweise Konvergenz}
-$f(t) = f(t+T)$, $f(t) \in L^2([0,T])$ und $f'(t)$ existiert und ist kontinuierlich für alle $t \in \mathbb{R}$, dann konvergieren die Summen auch punktweise.
+$f(t) = f(t+T)$, $f(t) \in L^2([0,T])$ und $f'(t)$ existiert und ist kontinuierlich für alle $t \in \mathbb{R}$, dann konvergieren die Summen auch punktweise. Beweis über $\lim\limits_{N \rightarrow \infty} \int_{-\infty}^{\infty} | f(t) - f_N(t) |^2 dt = 0$, wobei $f(t)$ die ursprüngliche Funktion ist, $f_N(t)$ die approximierte und $N$ die Anzahl Koeffizienten (siehe U2-2b).

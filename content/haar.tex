@@ -22,14 +22,18 @@
 \]
 
 \[ 
-	\nu_{m,n} = \langle \psi_{m,n} | f \rangle = \int\limits_{-\infty}^{\infty}\psi_{m,n}(t) \cdot f(t) \,\mathrm{d}t
-	\qquad \Longleftrightarrow \qquad
+	\nu_{m,n} = \langle \psi_{m,n} | f \rangle = \int\limits_{-\infty}^{\infty}\psi_{m,n}(t) \cdot f(t) \,\mathrm{d}t = 
+	\dfrac{1}{\sqrt{2^m}} \left( \int\limits_{2^mn}^{2^m(\frac12+n)} f(t) \mathrm{d}t - \int\limits_{2^m(\frac12+n)}^{2^m(1+n)}f(t) \mathrm{d}t  \right)
+	\quad \Leftrightarrow \quad
 	f(t)=\sum_{m,n \in \mathbb{Z}} \nu_{m,n} \cdot \psi_{m,n}
 \]
-	
+
+\todo{RK: Übersicht mit Streckungen/Verschiebungen, da geht immer was schief}	
 \[  
 	||f||^2 = \sum_{m,n \in \mathbb{Z}} |\nu_{m,n}|^2 \qquad \qquad ||f-f_N||^2 = ||f - \sum_{m,n \in \mathbb{Z}}^N \nu_{m,n} \cdot \psi_{m,n}||^2 = \sum_{k=N+1}^{\infty} |c_k|^2
 \]
+
+\todo{RK: TI-89 Eingabe des Haar-Zeugs von Ü2-3}
 
 \textbf{Haar-Transformation:}
 \begin{enumerate}
