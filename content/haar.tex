@@ -32,8 +32,12 @@
 \[  
 	||f||^2 = \sum_{m,n \in \mathbb{Z}} |\nu_{m,n}|^2 \qquad \qquad ||f-f_N||^2 = ||f - \sum_{m,n \in \mathbb{Z}}^N \nu_{m,n} \cdot \psi_{m,n}||^2 = \sum_{k=N+1}^{\infty} |c_k|^2
 \]
-
-\todo{RK: TI-89 Eingabe des Haar-Zeugs von Ü2-3}
+\textbf{TI-89 Haar-Berechnungen}
+\begin{alltt}
+1/(\(\sqrt{}\)(2^m))*(\(\int\)(f(x),x,2^m*n,2^m*(1/2+n))-\(\int\)(f(x),x,2^m*(1/2+n),2^m*(1+n)))\(\rightarrow\)haar(m,n)
+when(0\(\leq\)x,0,when(x<\(\pi\)/2,sin(x),0))\(\rightarrow\)f(x) \(\quad\) when(0\(\leq\)x,0,when(x<1,1,0))\(\rightarrow\)f(x)
+haar(m,n)
+\end{alltt}
 
 \textbf{Haar-Transformation:}
 \begin{enumerate}
