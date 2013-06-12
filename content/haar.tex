@@ -22,14 +22,22 @@
 \]
 
 \[ 
-	\nu_{m,n} = \langle \psi_{m,n} | f \rangle = \int_{-\infty}^{\infty}\psi_{m,n}(t) \cdot f(t) \,\mathrm{d}t
-	\qquad \Longleftrightarrow \qquad
-	f(t)=\sum_{m,n \in \mathbb{Z}} \nu_{m,n} \cdot \psi{m,n}
+	\nu_{m,n} = \langle \psi_{m,n} | f \rangle = \int\limits_{-\infty}^{\infty}\psi_{m,n}(t) \cdot f(t) \,\mathrm{d}t = 
+	\dfrac{1}{\sqrt{2^m}} \left( \int\limits_{2^mn}^{2^m(\frac12+n)} f(t) \mathrm{d}t - \int\limits_{2^m(\frac12+n)}^{2^m(1+n)}f(t) \mathrm{d}t  \right)
+	\quad \Leftrightarrow \quad
+	f(t)=\sum_{m,n \in \mathbb{Z}} \nu_{m,n} \cdot \psi_{m,n}
 \]
-	
+
+\todo{RK: Übersicht mit Streckungen/Verschiebungen, da geht immer was schief}	
 \[  
 	||f||^2 = \sum_{m,n \in \mathbb{Z}} |\nu_{m,n}|^2 \qquad \qquad ||f-f_N||^2 = ||f - \sum_{m,n \in \mathbb{Z}}^N \nu_{m,n} \cdot \psi_{m,n}||^2 = \sum_{k=N+1}^{\infty} |c_k|^2
 \]
+\textbf{TI-89 Haar-Berechnungen}
+\begin{alltt}
+1/(\(\sqrt{}\)(2^m))*(\(\int\)(f(x),x,2^m*n,2^m*(1/2+n))-\(\int\)(f(x),x,2^m*(1/2+n),2^m*(1+n)))\(\rightarrow\)haar(m,n)
+when(0\(\leq\)x,0,when(x<\(\pi\)/2,sin(x),0))\(\rightarrow\)f(x) \(\quad\) when(0\(\leq\)x,0,when(x<1,1,0))\(\rightarrow\)f(x)
+haar(m,n)
+\end{alltt}
 
 \textbf{Haar-Transformation:}
 \begin{enumerate}

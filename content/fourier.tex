@@ -44,7 +44,7 @@ Wenn folgendes Theorem erfüllt ist hat $h$ n kontinuierliche Ableitungen:
 	\end{tabular}
 \end{center}
 
-\subsection{Linear And Time Invariant System (LTI)}
+\subsection{Linear and Time Invariant System (LTI)}
 Sei $x$ eine $T$ periodische Funktion, dann ist $H$ ein LTI System wenn folgendes gilt (S ist die Shift-Matrix um $T$):
 \[ 	H\cdot S = S\cdot H \qquad \qquad y=H\cdot x 
 	\qquad \qquad 
@@ -58,12 +58,12 @@ Sei $x$ eine $T$ periodische Funktion, dann ist $H$ ein LTI System wenn folgende
 \]
 
 
-\subsection{Finit Fourier Transformation}
+\subsection{Finite Fourier Transformation}
 Die Eigenvektoren und Eigenwerte plus ein Faktor von einer LTI Matrix $H$ stellen die Finite Fourier Transformation dar: (wobei $\omega = \frac{2\pi}{T}$)\\
 
 Eigenwerte: \[ \lambda_k = \sum_{t=0}^{T-1} h_t \e^{-jk\omega t} \]
-Finit Fourier Transformation: \[ \hat{h}_k = c_T \cdot \lambda_k = c_T \cdot \sum_{t=0}^{T-1} h_t \e^{-jk\omega t} \]
-Inverse Finit Fourier Transformation: \[ h_t = \frac{1}{c_T T} \cdot \sum_{k=0}^{T-1}\hat{h}_k \e^{+jk\omega t} \]
+Finite Fourier Transformation: \[ \hat{h}_k = c_T \cdot \lambda_k = c_T \cdot \sum_{t=0}^{T-1} h_t \e^{-jk\omega t} \]
+Inverse Finite Fourier Transformation: \[ h_t = \frac{1}{c_T T} \cdot \sum_{k=0}^{T-1}\hat{h}_k \e^{+jk\omega t} \]
 Wobei $c_T = \frac{1}{T}$. Mehr Symmetrie kann durch die Wahl von $c_T = \frac{1}{\sqrt{T}}$ erreicht werden. Dann gilt $||h||^2=||\hat{h}||^2$
 
 %TODO abklären ob FFT noch eingefügt werden soll
@@ -82,7 +82,7 @@ Fouriertransform (FT): \[ \hat{f}(\xi) = \int_{-\infty}^{\infty}f(t) \e^{-j 2\pi
 
 Inverse Fouriertransform (IFT): \[ f(t) = \int_{-\infty}^{\infty}\hat{f}(\xi) \e^{+j 2\pi \xi t} \, \mathrm{d}\xi \]
 
-Plancherel Identity: \[ ||f||^2 = ||\hat{f}||^2 \]
+Plancherel Identity: \[ ||f(t)||^2 = ||\hat{f}(\xi)||^2 \]
 
 \subsubsection{Properties}
 Linearität: \[ h = af + bg \FT \hat{h} = a\hat{f + b\hat{g}} \]
