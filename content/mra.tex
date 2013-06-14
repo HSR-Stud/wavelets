@@ -100,8 +100,6 @@ Downsampling
   & $(..., x_{-2}, \underline{x_0}, x_2, x_4, ...)$
 \end{tabular}
 
-\todo{RK: Evtl. Übung 6-2b als Bsp. für Rekonstruktion einfügen}
-
 
 Vereinfachung des Analyseschritts für die Handrechnung $k-2n=l\rightarrow k=l+2n$:
 \[ 
@@ -109,6 +107,17 @@ Vereinfachung des Analyseschritts für die Handrechnung $k-2n=l\rightarrow k=l+2
 	\qquad \qquad \qquad \qquad
 	\nu_{m+1,n} = \sum_{l} g_{l} u_{m,l+2n}
 \]
+
+\textbf{Beispiel Rekonstruktion} (Übung 6-2b):\\
+Geg.:
+$\underline{u} = \frac{1}{\sqrt{2}} ( \underline{3}, 7, 10, 13); \; 
+\underline{\nu} = (\underline{\sqrt{2-3}}, 3\sqrt{2}-7, 5\sqrt{2}-10, 6\sqrt{2}-13);\;
+\tilde{A} = (\underline{1}, \sqrt{2}-1)$\\
+$\underline{\tilde{x}} = \tilde{A} * \left((\uparrow 2)(\underline{u}) \right) \oplus \tilde{D } * \left( (\uparrow 2) (\underline{\nu})\right)$\\
+$\tilde{A} * \left((\uparrow 2) (\underline{u}) \right)= 
+(\underline{1}, \sqrt{2}-1) * \frac{1}{\sqrt{2}}(\underline{3}, 0, 7, 0, 10, 0, 13) =
+(\underline{\frac{3}{\sqrt{2}}}, 3-\frac{3}{\sqrt{2}}, \frac{7}{\sqrt{2}}, 7-\frac{7}{\sqrt{2}}, \frac{10}{\sqrt{2}}, 10-\frac{10}{\sqrt{2}}, \frac{13}{\sqrt{2}}, 13-\frac{13}{\sqrt{2}})$ \\
+Analog zum \em Moving Average \em ($\tilde{A}$) erfolgt Berechnung der  \em Moving Difference \em ($\tilde{D}$). Schlussendlich Elementweise addieren.
 
 
 \subsection{Biorthogonal MRA}
