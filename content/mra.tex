@@ -59,14 +59,14 @@ Wavelet:
 \textbf{Fast Wavelet Transform} (Decomposition / Reconstruction):
 \[
 	\boxed{\begin{array}{ccccc}
-		u_m & \xrightarrow{A} & u_{m+1} & \xrightarrow{A} & u_{m+2} \\
-		& \searrow^{D} & & \searrow^{D} & \\
+		u_m & \xrightarrow{(\downarrow 2)A} & u_{m+1} & \xrightarrow{(\downarrow 2)A} & u_{m+2} \\
+		& \searrow^{(\downarrow 2)D} & & \searrow^{(\downarrow 2)D} & \\
 		& & \nu_{m+1} & & \nu_{m+2} \\
 	\end{array}}
 	\qquad \qquad \qquad \qquad
 	\boxed{\begin{array}{ccccc}
-		u_{m+2} & \xrightarrow{\tilde{A}} & u_{m+1} & \xrightarrow{\tilde{A}} & u_{m} \\
-		& \nearrow_{\tilde{D}} & & \nearrow_{\tilde{D}} & \\
+		u_{m+2} & \xrightarrow{\tilde{A}(\uparrow 2)} \oplus& u_{m+1} & \xrightarrow{\tilde{A}(\uparrow 2)} \oplus & u_{m} \\
+		& \nearrow_{\tilde{D} (\uparrow 2)} & & \nearrow_{\tilde{D} (\uparrow 2)} & \\
 		\nu_{m+2}& & \nu_{m+1} & & \\
 	\end{array}}
 \]
@@ -88,6 +88,19 @@ Wavelet:
 	\qquad \qquad \qquad \qquad
 	\tilde{D}(x)_n = \sum_{k \in  \mathbb{Z}} g_{n-2k} x_k
 \]
+
+\begin{tabular}{l r c l}
+Upsampling
+  & $(..., x_{-1}, \underline{x_0}, x_1, x_2, x_3, x_4, ...)$
+  & $\xrightarrow{\uparrow 2}$
+  & $(..., x_{-1}, 0, \underline{x_0}, 0, x_1, 0, x_2, 0, x_3, 0, x_4, 0, ...)$ \\
+Downsampling
+  &$(..., x_{-2}, x_{-1}, \underline{x_0}, x_1, x_2, x_3, x_4, ...)$ 
+  & $\xrightarrow{\downarrow 2}$ 
+  & $(..., x_{-2}, \underline{x_0}, x_2, x_4, ...)$
+\end{tabular}
+
+\todo{RK: Evtl. Übung 6-2b als Bsp. für Rekonstruktion einfügen}
 
 
 Vereinfachung des Analyseschritts für die Handrechnung $k-2n=l\rightarrow k=l+2n$:
@@ -181,7 +194,7 @@ Zusammenhang der Filter (shift: $(-z)^k$, inverse Reihenfolge durch $z^{-1}$, al
 Mit einer orthogonalen Filterbank hat man Quadrature Mirror Filter Eigenschaften:\\
  $|\hat{h}(\xi)|^2 + |\hat{g}(\xi)|^2 = |\hat{\tilde{h}}(\xi)|^2 + |\hat{\tilde{g}}(\xi)|^2 = 2$
 
-\subsubsection{Biorthogonal Filterkoeffizienten}
+\subsubsection{Biorthogonale Filterkoeffizienten}
 
 Zusammenhang der Filter (shift: $(-z)^k$ bzw. $-z^{-k}$, alternierendes Vorzeichen$(\pm)$ durch einsetzen von $-z$):
 %TODO wo ist z^0 und wo z^n (Skript seite 27 + application db2 vergleichen???)
