@@ -1,25 +1,30 @@
 \section{Haar Wavelet}
 
 \begin{center}
-	\begin{minipage}[c]{0.3\textwidth}
-		\includegraphics[height=3cm]{content/HaarWavelet.pdf}
-	\end{minipage}	
-	\begin{minipage}[c]{0.3\textwidth}
-		\[
-			\psi(t)=\begin{cases} 1 \quad 0 \leq t < \frac{1}{2}\\ -1 \quad \frac{1}{2} \leq t < 1  \end{cases}  
-		\]
+	\begin{minipage}[c]{0.65\textwidth}
+    \begin{center}
+    \includegraphics[width=6cm]{content/HaarWavelet.pdf}
+    \end{center}
+    \[
+      \psi(t) = \psi_{0,0}(t)=\begin{cases} 1 \quad 0 \leq t < \frac{1}{2}\\ -1 \quad \frac{1}{2} \leq t < 1  \end{cases}
+    \]
+    \[  
+    	\psi_{m,n}(t)=\frac{1}{\sqrt{2^m}} \cdot \psi\left(\frac{t}{2^m} - n\right) = 2^{-m/2} \cdot \psi(2^{-m}t-n) 
+    \]
+    \[	\psi_{m,n}  = \begin{cases} 
+    	\frac{1}{\sqrt{2^m}} \qquad 2^m n \leq t < 2^m(n+\frac{1}{2}) \\ 
+    	\frac{-1}{\sqrt{2^m}} \qquad 2^m(n+\frac{1}{2}) \leq t < 2^m(n+1)
+    	\end{cases}
+    \]
+    
+	\end{minipage}
+	\begin{minipage}{0.3\textwidth}
+	\textbf{Haar-Wavelets gestreckt und gestaucht}\\
+	\includegraphics[width=7cm]{./Content/HaarStretchedMoved}
 	\end{minipage}
 \end{center}
 
 
-\[  
-	\psi_{m,n}(t)=\frac{1}{\sqrt{2^m}} \cdot \psi(\frac{t}{2^m} - n) = 2^{-m/2} \cdot \psi(2^{-m}t-n) 
-	\qquad \qquad
-	\psi_{m,n}  = \begin{cases} 
-	\frac{1}{\sqrt{2^m}} \qquad 2^m n \leq t < 2^m(n+\frac{1}{2}) \\ 
-	\frac{-1}{\sqrt{2^m}} \qquad 2^m(n+\frac{1}{2}) \leq t < 2^m(n+1)
-	\end{cases}
-\]
 
 \[ 
 	\nu_{m,n} = \langle \psi_{m,n} | f \rangle = \int\limits_{-\infty}^{\infty}\psi_{m,n}(t) \cdot f(t) \,\mathrm{d}t = 
@@ -27,11 +32,11 @@
 	\quad \Leftrightarrow \quad
 	f(t)=\sum_{m,n \in \mathbb{Z}} \nu_{m,n} \cdot \psi_{m,n}
 \]
-
-\todo{RK: Übersicht mit Streckungen/Verschiebungen, da geht immer was schief}	
-\[  
+\[
 	||f||^2 = \sum_{m,n \in \mathbb{Z}} |\nu_{m,n}|^2 \qquad \qquad ||f-f_N||^2 = ||f - \sum_{m,n \in \mathbb{Z}}^N \nu_{m,n} \cdot \psi_{m,n}||^2 = \sum_{k=N+1}^{\infty} |c_k|^2
 \]
+
+
 \textbf{TI-89 Haar-Berechnungen}
 \begin{alltt}
 1/(\(\sqrt{}\)(2^m))*(\(\int\)(f(x),x,2^m*n,2^m*(1/2+n))-\(\int\)(f(x),x,2^m*(1/2+n),2^m*(1+n)))\(\rightarrow\)haar(m,n)
