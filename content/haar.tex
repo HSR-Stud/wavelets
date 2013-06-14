@@ -47,10 +47,13 @@ haar(m,n)
 \end{enumerate}
 
 \begin{tabularx}{\textwidth}{p{8cm}|X}
-Schnelle Haar-Transformation
-  & Schnelle Haar-Rücktransformation\\
+Schnelle Haar-Transformation (iterativ)
+  & Schnelle Haar-Rücktransformation (iterativ)\\
 $u_{m+1,n} = \dfrac{u_{m,2n}+u_{m,2n+1}}{\sqrt{2}}$
   & $u_{m-1,2n} = \dfrac{u_{m,n}+\nu_{m,n}}{\sqrt{2}}$ \\
 $\nu_{m+1,n} = \dfrac{u_{m,2n}-u_{m,2n+1}}{\sqrt{2}}$
   & $\nu_{m-1,2n+1} = \dfrac{u_{m,n}-\nu_{m,n}}{\sqrt{2}}$
 \end{tabularx}
+
+Schnelle Haar-Transformation (direkt, U5-2): 
+$u_{m,n} = \int_{n 2^m}^{(n+1)2^m} f(t) dt \approx \sqrt{2^m}f(2^m[n+1/2])$

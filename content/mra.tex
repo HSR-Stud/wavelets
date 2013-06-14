@@ -150,6 +150,18 @@ Filterbank (durch $-(-1)^k$ werden alle geraden Koeffizienten gelöscht ($=0$) )
 	\tilde{A}(z)A(-z) + \tilde{D}(z)D(-z) = 0
 \]
 
+
+Perfekte Rekonstruktion mit:
+\[
+\tilde{X}(z) = \frac12 \left( \big(A(z) X(z) + A(-z)X(-z)\big) \tilde{A}(z) + \big(D(z)X(z) + D(-z)X(-z)\big) \tilde{D}(z) \right)
+\]
+und im Falle von Haar: 
+$A(z) = \frac{1+z}{\sqrt{2}} \quad 
+D(z) = \frac{1-z}{\sqrt{2}} \quad 
+\tilde{A}(z) = \frac{1+z^{-1}}{\sqrt{2}} \quad 
+\tilde{D}(z) = \frac{1-z^{-1}}{\sqrt{2}}$
+\\
+
 \subsubsection{Orthogonale Filterkoeffizienten}
 Zusammenhang der Filter (shift: $(-z)^k$, inverse Reihenfolge durch $z^{-1}$, alternierendes Vorzeichen$(\pm)$ durch einsetzen von $-z$):
 %TODO wo ist z^0 und wo z^n (Skript seite 27 + application db2 vergleichen???)
