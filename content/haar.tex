@@ -46,9 +46,11 @@ haar(m,n)
 	\item In jedem Schritt $u_{m+k+1}, \nu_{m+k+1}$ berechnen
 \end{enumerate}
 
-Schnelle Haar-Transformation:
-\[  
-	u_{m+1,n} = \dfrac{u_{m,2n}+u_{m,2n+1}}{\sqrt{2}} 
-	\qquad \qquad
-	\nu_{m+1,n} = \dfrac{u_{m,2n}-u_{m,2n+1}}{\sqrt{2}}
-\]
+\begin{tabularx}{\textwidth}{p{8cm}|X}
+Schnelle Haar-Transformation
+  & Schnelle Haar-Rücktransformation\\
+$u_{m+1,n} = \dfrac{u_{m,2n}+u_{m,2n+1}}{\sqrt{2}}$
+  & $u_{m-1,2n} = \dfrac{u_{m,n}+u_{m,n}}{\sqrt{2}}$ \\
+$\nu_{m+1,n} = \dfrac{u_{m,2n}-u_{m,2n+1}}{\sqrt{2}}$
+  & $\nu_{m-1,2n+1} = \dfrac{u_{m,n}-u_{m,n}}{\sqrt{2}}$
+\end{tabularx}
