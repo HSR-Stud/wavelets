@@ -1,6 +1,6 @@
 \section{Grundlagen}
 
-\subsection{Skalarprodukt}
+\subsection{Skalarprodukt \baeni{3}}
 
 Vektor:
 \[
@@ -21,8 +21,8 @@ Definition der Länge von $v$ (bei Funktionen Norm genannt): $||v|| = \sqrt{\lan
 Definition des Winkels $\gamma$ zwischen $v$ und $w$: $cos(\gamma) = \frac{\langle v|w \rangle}{||v||\cdot ||w||} \qquad$ wenn $v \perp w  \quad \langle v|w \rangle = 0$
 
 
-\subsection{Basis eines Vektorraums}
-Jeder n-dimensionale Vektorraum $V$ wird von n Basisvektoren $B=\{ b_1,...,b_n \}$ aufgespannt. Jeder Vektor, der sich in diesem Vektorraum befindet, kann als Linearkombination der Basisvektoren dargestellt werden.  Alle Basisvektoren sind linear unabhängig voneinander (ein Basisvektor kann nicht durch Linearkombination der anderen Basisvektoren dargestellt werden)!
+\subsection{Basis eines Vektorraums \baeni{2}}
+Jeder $n$-dimensionale Vektorraum $V$ wird von $n$ Basisvektoren $B=\{ b_1,...,b_n \}$ aufgespannt. Jeder Vektor, der sich in diesem Vektorraum befindet, kann als Linearkombination der Basisvektoren dargestellt werden.  Alle Basisvektoren sind linear unabhängig voneinander (ein Basisvektor kann nicht durch Linearkombination der anderen Basisvektoren dargestellt werden)!
 
 \[  
 	v = \sum_{i=1}^{n}c_i \cdot b_i \qquad \qquad  b_k \neq \sum_{i=1 \, (i\neq k)}^{n}c_i \cdot b_i \qquad \qquad v \in V \quad c_i \in \mathbb{R}\text{ oder } \in \mathbb{C} \text{ bei complexem $V$}
@@ -53,13 +53,20 @@ Eine Basis ist orthonormal wenn die Basisvektoren $e_i$ orthogonal zueinander si
 
 
 \subsection{Funktionsraum}
-$L^2(\mathbb{R}) \qquad$ Menge der quadratintegrierbaren Funktionen $\int_{-\infty}^{\infty}|f(t)|^2 \mathrm{d}t < \infty$ oder $L^2(T) \quad \int_{0}^{T}|f(t)|^2 \mathrm{d}t < \infty$
+\begin{tabularx}{\textwidth}{p{4cm} X}
+  $L^2(\mathbb{R})$ 
+    &Menge der quadratintegrierbaren Funktionen $\int_{-\infty}^{\infty}|f(t)|^2 \mathrm{d}t < \infty$ oder $L^2(T) \quad \int_{0}^{T}|f(t)|^2 \mathrm{d}t < \infty$\newline
+  ($L^2(\mathbb{R})$ und $L^2(T)$ 
+    sind Hilberträume, da sie ein Skalarprodukt mit gewissen Axiomen erfüllt.) \\
+  $L^2$-Norm $||f-f_n||^2$ 
+    & Mass für die Güte der Approximation $f_n$ von der Funktion $f$\\
+  $L(\mathbb{R})$ & $\int_{-\infty}^{\infty}|f(t)| \mathrm{d}t < \infty$ oder $L(T) \qquad \int_{0}^{T}|f(t)|^2 \mathrm{d}t < \infty$\\
+  $L^2$-Konvergenz
+    & $||f-g_n||^2 = ||f-h_n||^2 \xrightarrow{n \rightarrow \infty} 0$ ($g_n, h_n$ konvergieren gegen $f$ im $L^2$-Sinn)
+\end{tabularx}
 
-($L^2(\mathbb{R})$ und $L^2(T)$ sind Hilberträume, da sie ein Skalarprodukt mit gewissen Axiomen erfüllt.)
 
-$L^2$-Norm $||f-f_n||^2 \qquad$ Mass für die Güte der Approximation $f_n$ von der Funktion $f$
 
-$L(\mathbb{R}) \qquad \int_{-\infty}^{\infty}|f(t)| \mathrm{d}t < \infty$ oder $L(T) \qquad \int_{0}^{T}|f(t)|^2 \mathrm{d}t < \infty$
 
 \subsection{Punktweise Konvergenz}
 $f(t) = f(t+T)$, $f(t) \in L^2([0,T])$ und $f'(t)$ existiert und ist kontinuierlich für alle $t \in \mathbb{R}$, dann konvergieren die Summen auch punktweise. Beweis über $\lim\limits_{N \rightarrow \infty} \int_{-\infty}^{\infty} | f(t) - f_N(t) |^2 dt = 0$, wobei $f(t)$ die ursprüngliche Funktion ist, $f_N(t)$ die approximierte und $N$ die Anzahl Koeffizienten (siehe U2-2b).

@@ -33,7 +33,7 @@ Wenn folgendes Theorem erfüllt ist hat $h$ n kontinuierliche Ableitungen:
 
 \newpage
 \section{Fourier Transformation}
-
+\baeni{243}
 \begin{center}
 	\begin{tabular}{c|c|c}
 		& periodisch & nicht-periodisch \\
@@ -44,7 +44,7 @@ Wenn folgendes Theorem erfüllt ist hat $h$ n kontinuierliche Ableitungen:
 	\end{tabular}
 \end{center}
 
-\subsection{Linear and Time Invariant System (LTI)}
+\subsection{Linear and Time Invariant System (LTI, U3-1)}
 Sei $x$ eine $T$ periodische Funktion, dann ist $H$ ein LTI System wenn folgendes gilt (S ist die Shift-Matrix um $T$):
 \[ 	H\cdot S = S\cdot H \qquad \qquad y=H\cdot x 
 	\qquad \qquad 
@@ -81,6 +81,8 @@ Frequenzgang: \[ \hat{h}(\xi) = H(\e^{2\pi j \xi})=\sum h_k \e^{-2\pi jk \xi} \q
 Fouriertransform (FT): \[ \hat{f}(\xi) = \int_{-\infty}^{\infty}f(t) \e^{-j 2\pi \xi t} \, \mathrm{d}t \qquad \qquad \xi = \frac{k}{T} \text{ wobei } (T \rightarrow \infty) \]
 
 Inverse Fouriertransform (IFT): \[ f(t) = \int_{-\infty}^{\infty}\hat{f}(\xi) \e^{+j 2\pi \xi t} \, \mathrm{d}\xi \]
+
+Parseval Theorem: \[ <f_1(t), f_2(t)> = <\hat{f_1}(\xi), \hat{f_2}(\xi)>, \quad \text{wenn } f_1(t), f_2(t) \text{ in } L^2\]
 
 Plancherel Identity: \[ ||f(t)||^2 = ||\hat{f}(\xi)||^2 \]
 
