@@ -1,5 +1,5 @@
 \section{Designing Wavelet Filters}
-
+\baeni{82}
 \subsection{Vanishing Moments}
  Wenn die Fouriertransformation $\hat{\psi}(\xi)$ eine Nullstelle der Ordnung $p$ an der Stelle $\xi = 0$ hat, dann sind die Ableitungen $\hat{\psi}^{(k)}(0)$ für $k=0,1,...,p-1$ gleich Null. Setzt man die Formel für die Fouriertransformation ein sieht man, dass das $k$. Moment verschwindet! Anders ausgedrückt, verschwinden die Wavelet-Koeffizienten $v_{m,n}$ wenn die Funktion $f(t)$ über dem Träger des Wavelets mit einem Polynom des Grades $p-1$ dargestellt werden kann. 
 
@@ -7,7 +7,7 @@
 	\mu_k = \int_{-\infty}^{\infty} \psi(t) \cdot t^k \, \mathrm{d}t
 \]
 
-Ein Wavelet sollte möglichst viel verschwindende Momente (vanishing moments) aufweisen, denn dann sind die Koeffizienten $\nu_{m,n} = 0$.
+Ein Wavelet sollte möglichst viel verschwindende Momente (vanishing moments) aufweisen, denn dann sind die Koeffizienten $\nu_{m,n} = 0$. So lässt sich eine gute Datenkompression erreichen.
 
 
 \subsubsection{Vorgehen}
@@ -32,6 +32,22 @@ Vorgehen:
 	\item $A(z) = \sqrt{2}(\frac{z^{-1}+1}{2})^p H_0(z)$ \qquad $\tilde{A}(z) = \sqrt{2}(\frac{z^{-1}+1}{2})^{\tilde{p}} \tilde{H}_0(z)$
 \end{itemize}
 
+\subsection{Daubechies Filter \baeni{87}}
+  Das Ziel der Daubechies Filter ist, eine Nullstelle möglichst hoher Ordnung $p$ zu erreichen.
+  
+  \begin{tabularx}{\textwidth}{p{5cm} X}
+    1. Ordnung ($p=1$)
+      & Entspricht den Haar Filtern\\
+    2. Ordnung ($p=2$)
+      & $H(z) = \frac{1}{4\sqrt{2}} \left( (1+\sqrt{3}) + (3+\sqrt{3})z^{-1} + (3-\sqrt{3})z^{-2} + (1-\sqrt{3})z^{-3} \right)$
+      Das entspricht zwei Nullstellen bei $z= 2 \pm \sqrt{3}$\\
+  \end{tabularx}
+  
+\subsubsection{Daublets \baeni{92-1.}}
+  Daublets sind Daubechies Filter mit minimalem Phasengang.
+
+\subsubsection{Symmlets \baeni{92-2.}}
+  Linearphasige Filter haben symmetrische Koeffizienten. Symmlets sind Filter mit minimaler Abweichung von linearer Phase, sind somit fast symmetrisch. Nur mit $l=1$ sind dies auch Daubechies-Filter (siehe Bäni).
 
 
 \section{Scaling Function from Filter Coefficients}
