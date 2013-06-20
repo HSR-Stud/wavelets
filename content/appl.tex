@@ -72,7 +72,10 @@ Die Operatoren $A_k$ berechnet den Approximationskoeffizient der Stufe $k$. Die 
 
 Die Filterkoeffizienten werden aber mit der oben abgebildeten Filterbank berechnet.
 
-\todo{Bild 7.3 von S. 133}
+\begin{center}
+	\includegraphics[width=0.35\textwidth]{content/waveBsp2D.png}
+\end{center}
+
 
 
 \subsection{Denoising \baeni{190}}
@@ -175,7 +178,7 @@ Die SWT lässt das Downsamplen weg, upsampled statt dessen die Filter! Bei der S
 \subsubsection{Abhängigkeit vom MSE und dem Threshold}
 \[ MSE(\tilde{f}) = \frac{1}{N} \sum |v_{m,n}|^2 = \frac{1}{N}\left(\underbrace{\sum_{|v_{m,n}| < \tau}|v_{m,n}|^2}_{Rauschenergie} + \underbrace{\sum_{|v_{m,n}| \geq \tau}|v_{m,n}|^2}_{Signalenergie}\right) \]
 
-
+\newpage
 \subsection{Feature Detection and Extraction \baeni{220}}
 
 Feature eines Signals oder eines Bildes ist ein bestimmter Teil Information darin. In 1 Dimension sind dies Peaks, Sprünge oder irgend welche Muster (pattern). Bei Bilder handelt es sich meist um Kanten, Ränder und Ecken.
