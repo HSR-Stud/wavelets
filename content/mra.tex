@@ -174,6 +174,24 @@ Filterbank (durch $-(-1)^k$ werden alle geraden Koeffizienten gelöscht ($=0$) )
 	\tilde{A}(z)A(-z) + \tilde{D}(z)D(-z) = 0
 \]
 
+(Übung 9 (FS2013)-2a,b): Aus diesen Gleichungen folgt das Gleichungssystem:
+\begin{align*}
+  \text{Gleichung links, Koeffizient } z^0: \qquad & \tilde a_0 a_0 + \tilde a_1 a_{-1} + \tilde d_0 d_0 + \tilde d_1 d_{-1} &= 2 \\
+  \text{Gleichung links, Koeffizient } z^1: \qquad & \tilde a_1 a_0 + \tilde d_1 d_0 &= 0 \\
+  \text{Gleichung links, Koeffizient } z^{-1}: \qquad & \tilde a_0 a_{-1} + \tilde d_0 d_{-1} &= 0 \\
+  \text{Gleichung rechts, Koeffizient } z^{0}: \qquad & \tilde a_0 a_0 - \tilde a_1 a_{-1} + \tilde d_0 d_0 - \tilde d_1 a_{-1} &= 0 \\
+\end{align*}
+und daraus die Koeffizienten:
+\[
+  \begin{pmatrix}
+    \tilde a_0 & \tilde a_1\\
+    \tilde d_0 & \tilde d_1
+  \end{pmatrix}
+  = \frac{1}{a_0 d_{-1} - a_{-1} d_0} \begin{pmatrix}
+    d_{-1} & -d_0 \\
+    -a_{-1} & a_0
+  \end{pmatrix}
+\]
 
 Perfekte Rekonstruktion mit:
 \[
