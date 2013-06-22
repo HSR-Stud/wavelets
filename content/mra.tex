@@ -203,6 +203,14 @@ D(z) = \frac{1-z}{\sqrt{2}} \quad
 \tilde{A}(z) = \frac{1+z^{-1}}{\sqrt{2}} \quad 
 \tilde{D}(z) = \frac{1-z^{-1}}{\sqrt{2}}$
 \\
+\subsubsection{Zusammenhang zwischen H, A, D \baeni{76}}
+\begin{tabularx}{\textwidth}{X | p{9cm}}
+Die Filterkoeffizienten $h_k$ werden so in die Filterbank gerechnet:\newline
+$A := H', \, \tilde A := H,\, D := G, \; \tilde D := G$
+mit den Koeffizienten: $h'_k = h_{-k}$, $g_k = (-1)^k h_{l-k}$
+& Schema: \newline
+  \includegraphics[width=9cm]{./content/MsaFilterbank.png}\\
+\end{tabularx}
 
 \subsubsection{Orthogonale Filterkoeffizienten \baeni{52, 75}}
 Zusammenhang der Filter (shift: $(-z)^k$, inverse Reihenfolge durch $z^{-1}$, alternierendes Vorzeichen$(\pm)$ durch einsetzen von $-z$):
