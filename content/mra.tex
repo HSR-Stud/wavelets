@@ -32,21 +32,21 @@ Scale space:
 \[
 	V_m = \langle \varphi_{m,n}|n \in \mathbb{Z}  \rangle = \{ ...,\varphi_{m,-1},\varphi_{m,0}, \varphi_{m,1}, \varphi_{m,2},... \}
 	\qquad \qquad
-	V_mf = \sum_{n \in \mathbb{Z}} u_{m,n}\varphi_{m,n} \quad \text{mit } u_{m,n}=\langle \varphi_{m,n}|f \rangle
+	A_mf = \sum_{n \in \mathbb{Z}} u_{m,n}\varphi_{m,n} \quad \text{mit } u_{m,n}=\langle \varphi_{m,n}|f \rangle
 \]
 
 Lokalisation:
 \[  
-	m \rightarrow -\infty \quad ||f-V_mf||^2 \rightarrow 0 \quad (\text{finer (feiner)})
+	m \rightarrow -\infty \quad ||A_mf - f||^2 \rightarrow 0 \quad (\text{finer (feiner)})
 	\qquad \qquad
-	m \rightarrow +\infty \quad ||V_mf||^2 \rightarrow 0 \quad (\text{coarser (gröber)})
+	m \rightarrow +\infty \quad ||A_mf||^2 \rightarrow 0 \quad (\text{coarser (gröber)})
 \]
 
 Detail space (Detailinformation):
 \[
 	W_m = \langle \psi_{m,n} | n \in \mathbb{Z} \rangle = \{ ...,\psi_{m,-1},\psi_{m,0}, \psi_{m,1}, \psi_{m,2},... \}
 	\qquad \qquad
-	W_mf = \sum_{n \in \mathbb{Z}} \nu_{m,n}\psi_{m,n} \quad \text{mit } \nu_{m,n}=\langle \psi_{m,n}|f \rangle
+	D_mf = \sum_{n \in \mathbb{Z}} \nu_{m,n}\psi_{m,n} \quad \text{mit } \nu_{m,n}=\langle \psi_{m,n}|f \rangle
 \]
 Räume (je weiter nach rechts (je kleiner m), desto grösser der Raum):
 \[ V_{m-1} = V_m \oplus W_m  \qquad \qquad ...\subset V_{m+1} \subset V_{m} \subset V_{m-1} \subset ... \]
@@ -55,7 +55,7 @@ Räume (je weiter nach rechts (je kleiner m), desto grösser der Raum):
 \[
 	\psi_{m,n} = \sum_{k \in \mathbb{Z}} g_k \varphi_{m-1,2n+k} 
 	\qquad \qquad 
-	\left(\psi_{0,0}=\sum_{k \in \mathbb{Z}} (-1)^k h_{l-k} \sqrt{2}  \varphi_{0,0}(2t-k) = \sum_{k \in \mathbb{Z}} g_k \varphi_{-1,k} \quad \underbrace{l \in \mathbb{Z}_{ungerade}}_{\text{frei wählbar}} \right)
+	\left(\psi_{0,0}=\sum_{k \in \mathbb{Z}} \underbrace{(-1)^k h_{l-k}}_{g_k} \sqrt{2}  \varphi_{0,0}(2t-k) = \sum_{k \in \mathbb{Z}} g_k \varphi_{-1,k} \quad \underbrace{l \in \mathbb{Z}_{ungerade}}_{\text{frei wählbar}} \right)
 \]
 
 \textbf{Fast Wavelet Transform} (Decomposition / Reconstruction, \baeni{73}):
@@ -148,9 +148,9 @@ $
 
 \textbf{Wavelet aus Skalierungsfunktion}:
 \[
-	\psi_{0,0}=\sum_{k \in \mathbb{Z}} (-1)^k \tilde{h}_{l-k} \sqrt{2}  \varphi_{0,0}(2t-k) = \sum_{k \in \mathbb{Z}} g_k \varphi_{-1,k} 
+	\psi_{0,0}=\sum_{k \in \mathbb{Z}} \underbrace{(-1)^k \tilde{h}_{l-k}}_{g_k} \sqrt{2}  \varphi_{0,0}(2t-k) = \sum_{k \in \mathbb{Z}} g_k \varphi_{-1,k} 
 	\qquad
-	\tilde{\psi}_{0,0}=\sum_{k \in \mathbb{Z}} (-1)^k h_{l-k} \sqrt{2}  \tilde{\psi}_{0,0}(2t-k) = \sum_{k \in \mathbb{Z}} \tilde{g}_k \tilde{\psi}_{-1,k} 
+	\tilde{\psi}_{0,0}=\sum_{k \in \mathbb{Z}}  \underbrace{(-1)^k h_{l-k}}_{\tilde{g}_k} \sqrt{2}  \tilde{\varphi}_{0,0}(2t-k) = \sum_{k \in \mathbb{Z}} \tilde{g}_k \tilde{\varphi}_{-1,k} 
 	\qquad 
 	\underbrace{l \in \mathbb{Z}_{odd}}_{\text{frei wählbar}}
 \]
@@ -203,22 +203,26 @@ D(z) = \frac{1-z}{\sqrt{2}} \quad
 \tilde{A}(z) = \frac{1+z^{-1}}{\sqrt{2}} \quad 
 \tilde{D}(z) = \frac{1-z^{-1}}{\sqrt{2}}$
 \\
-\subsubsection{Zusammenhang zwischen H, A, D \baeni{76}}
+
+\newpage
+
+\subsubsection{Orthogonale Filterkoeffizienten \baeni{52, 75}}
+
 \begin{tabularx}{\textwidth}{X | p{9cm}}
 Die Filterkoeffizienten $h_k$ werden so in die Filterbank gerechnet:\newline
-$A := H', \, \tilde A := H,\, D := G, \; \tilde D := G$
+$A := H', \, \tilde A := H,\, D := G', \; \tilde D := G$\newline
 mit den Koeffizienten: $h'_k = h_{-k}$, $g_k = (-1)^k h_{l-k}$
 & Schema: \newline
   \includegraphics[width=9cm]{./content/MsaFilterbank.png}\\
-\end{tabularx}
+\end{tabularx}\\
+\\
 
-\subsubsection{Orthogonale Filterkoeffizienten \baeni{52, 75}}
 Zusammenhang der Filter (shift: $(-z)^k$, inverse Reihenfolge durch $z^{-1}$, alternierendes Vorzeichen$(\pm)$ durch einsetzen von $-z$):
 %TODO wo ist z^0 und wo z^n (Skript seite 27 + application db2 vergleichen???)
 \[  
 	\tilde{A}(z) = A(z^{-1})
-	\qquad \qquad
-	D(z) = \tilde{D}(z^{-1}) = (-z)^l\tilde{A}(-z) \qquad l\text{: ungerade, frei wählbar}
+	\qquad
+	D(z) = \tilde{D}(z^{-1}) = (-z)^l\tilde{A}(-z) \qquad \tilde{D}(z) = (-z)^{-l}A(-z) \qquad l\text{: ungerade, frei wählbar}
 \]
 \[  
 	A = [h_0,...,h_n] \qquad
@@ -232,11 +236,14 @@ Mit einer orthogonalen Filterbank hat man Quadrature Mirror Filter Eigenschaften
  $|\hat{h}(\xi)|^2 + |\hat{g}(\xi)|^2 = |\hat{\tilde{h}}(\xi)|^2 + |\hat{\tilde{g}}(\xi)|^2 = 2 \qquad \Leftrightarrow \qquad
  |\hat{a}(\xi)|^2 + |\hat{d}(\xi)|^2 = |\hat{\tilde{a}}(\xi)|^2 + |\hat{\tilde{d}}(\xi)|^2 = 2$
 
-\subsubsection{Biorthogonale Filterkoeffizienten}
+\subsubsection{Biorthogonale Filterkoeffizienten \baeni{78}}
+Die Filterkoeffizienten $h_k, g_k$ werden so in die Filterbank gerechnet:\newline
+$A := H', \, \tilde A := \tilde H,\, D := G', \; \tilde D := \tilde G$\\
+\\
 
 Zusammenhang der Filter (shift: $(-z)^k$ bzw. $-z^{-k}$, alternierendes Vorzeichen$(\pm)$ durch einsetzen von $-z$):
 %TODO wo ist z^0 und wo z^n (Skript seite 27 + application db2 vergleichen???)
 \[ 
-	D(z) = (-z)^{-l}\tilde{A}(-z^{-1}) \qquad \qquad \tilde{D}(z) = (-z)^{l}A(-z^{-1})  \qquad l\text{: ungerade, frei wählbar}
+	D(z) = (-z)^{l}\tilde{A}(-z) \qquad \qquad \tilde{D}(z) = (-z)^{-l}A(-z)  \qquad l\text{: ungerade, frei wählbar}
 \]
 

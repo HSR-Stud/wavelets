@@ -72,9 +72,27 @@ Die Operatoren $A_k$ berechnet den Approximationskoeffizient der Stufe $k$. Die 
 
 Die Filterkoeffizienten werden aber mit der oben abgebildeten Filterbank berechnet.
 
-\begin{center}
-	\includegraphics[width=0.35\textwidth]{content/waveBsp2D.png}
-\end{center}
+\begin{minipage}{0.35\textwidth}
+	\includegraphics[width=1\textwidth]{content/waveBsp2D.png}
+\end{minipage}
+\begin{minipage}{0.75\textwidth}
+	$\left[
+	\begin{array}{c|c}
+	u & v^h \\
+	\hline
+	v^v & v^d
+	\end{array}
+	\right] \rightarrow
+	\text{Haar-Wavelet:} \left[
+		\begin{array}{cc|cc}
+		+ & + & + & +  \\
+		+ & + & - & -  \\
+		\hline
+		+ & - & + & -  \\
+		+ & - & - & +  \\
+		\end{array}
+		\right]$
+\end{minipage}
 
 
 

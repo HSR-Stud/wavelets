@@ -4,7 +4,8 @@
  Wenn die Fouriertransformation $\hat{\psi}(\xi)$ eine Nullstelle der Ordnung $p$ an der Stelle $\xi = 0$ hat, dann sind die Ableitungen $\hat{\psi}^{(k)}(0)$ für $k=0,1,...,p-1$ gleich Null. Setzt man die Formel für die Fouriertransformation ein sieht man, dass das $k$. Moment verschwindet! Anders ausgedrückt, verschwinden die Wavelet-Koeffizienten $v_{m,n}$ wenn die Funktion $f(t)$ über dem Träger des Wavelets mit einem Polynom des Grades $p-1$ dargestellt werden kann. 
 
 \[ 
-	\mu_k = \int_{-\infty}^{\infty} \psi(t) \cdot t^k \, \mathrm{d}t
+	\mu_k = \int_{-\infty}^{\infty} \psi(t) \cdot t^k \, \mathrm{d}t \longrightarrow 
+	\int_{-\infty}^{\infty} \psi(t) \cdot (a_0 + a_1t + a_2t^2 + \hdots) \mathrm{d}t = a_0\mu_0 + a_1\mu_1 + a_2\mu_2 + \hdots
 \]
 
 Ein Wavelet sollte möglichst viel verschwindende Momente (vanishing moments) aufweisen, denn dann sind die Koeffizienten $\nu_{m,n} = 0$. So lässt sich eine gute Datenkompression erreichen.
